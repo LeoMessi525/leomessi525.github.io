@@ -16,7 +16,6 @@
     --sand: #E2CFAA;
     --muted: #7A5C3A;
     --green: #2D4A2F;
-    --paper: #EFE3C2;
   }
 
   html { scroll-behavior: smooth; }
@@ -38,6 +37,7 @@
     opacity: 0.4;
   }
 
+  /* ── NAV ── */
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -46,7 +46,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 1rem 3rem;
-    background: rgba(26,15,0,0.92);
+    background: rgba(26,15,0,0.95);
     border-bottom: 1px solid var(--gold);
     backdrop-filter: blur(4px);
   }
@@ -56,8 +56,8 @@
     font-size: 1.3rem;
     color: var(--gold);
     letter-spacing: 0.05em;
-    text-decoration: none;
     cursor: pointer;
+    flex-shrink: 0;
   }
 
   .nav-links { display: flex; gap: 2rem; list-style: none; }
@@ -70,9 +70,57 @@
     text-transform: uppercase;
     transition: color 0.2s;
     cursor: pointer;
+    white-space: nowrap;
   }
   .nav-links a:hover { color: var(--gold); }
 
+  /* Hamburger */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    background: none;
+    border: none;
+  }
+  .hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--gold);
+    transition: all 0.3s;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 57px; left: 0; right: 0;
+    background: rgba(26,15,0,0.98);
+    border-bottom: 1px solid var(--gold);
+    z-index: 899;
+    padding: 1rem 0;
+  }
+  .mobile-menu.open { display: block; }
+  .mobile-menu ul { list-style: none; }
+  .mobile-menu ul li a {
+    display: block;
+    font-family: 'Special Elite', cursive;
+    color: var(--sand);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 0.9rem;
+    padding: 0.85rem 2rem;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(200,149,42,0.1);
+    transition: color 0.2s, background 0.2s;
+  }
+  .mobile-menu ul li a:hover { color: var(--gold); background: rgba(200,149,42,0.05); }
+
+  /* ── HERO ── */
   .hero {
     min-height: 100vh;
     display: flex;
@@ -82,12 +130,11 @@
     text-align: center;
     position: relative;
     overflow: hidden;
-    padding: 6rem 2rem 4rem;
+    padding: 6rem 1.5rem 4rem;
   }
 
   .hero-bg {
-    position: absolute;
-    inset: 0;
+    position: absolute; inset: 0;
     background:
       radial-gradient(ellipse 80% 60% at 50% 40%, rgba(200,149,42,0.12) 0%, transparent 70%),
       radial-gradient(ellipse 60% 80% at 20% 80%, rgba(184,76,24,0.10) 0%, transparent 60%),
@@ -96,54 +143,46 @@
 
   .hero-badge {
     font-family: 'Special Elite', cursive;
-    font-size: 0.75rem;
-    letter-spacing: 0.3em;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
     text-transform: uppercase;
     color: var(--gold);
     border: 1px solid var(--gold);
     padding: 0.35rem 1.2rem;
     margin-bottom: 2rem;
-    position: relative;
-    z-index: 2;
+    position: relative; z-index: 2;
   }
 
   .hero-title {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(3rem, 9vw, 7rem);
+    font-size: clamp(2.8rem, 10vw, 7rem);
     font-weight: 700;
     font-style: italic;
     color: var(--cream);
     line-height: 1.05;
-    position: relative;
-    z-index: 2;
+    position: relative; z-index: 2;
     text-shadow: 0 4px 40px rgba(200,149,42,0.3);
   }
-
   .hero-title span { color: var(--gold); }
 
   .hero-sub {
     font-family: 'Lora', serif;
     font-style: italic;
     color: var(--muted);
-    font-size: 1.1rem;
+    font-size: clamp(0.95rem, 2.5vw, 1.1rem);
     margin-top: 1.5rem;
     letter-spacing: 0.05em;
-    position: relative;
-    z-index: 2;
+    position: relative; z-index: 2;
   }
 
   .hero-divider {
-    width: 120px;
-    height: 1px;
+    width: 120px; height: 1px;
     background: linear-gradient(90deg, transparent, var(--gold), transparent);
     margin: 2rem auto;
-    position: relative;
-    z-index: 2;
+    position: relative; z-index: 2;
   }
 
-  .hero-cta {
-    display: flex; gap: 1rem; position: relative; z-index: 2; flex-wrap: wrap; justify-content: center;
-  }
+  .hero-cta { display: flex; gap: 1rem; position: relative; z-index: 2; flex-wrap: wrap; justify-content: center; }
 
   .btn {
     font-family: 'Special Elite', cursive;
@@ -157,7 +196,6 @@
     transition: all 0.25s;
     display: inline-block;
   }
-
   .btn-primary { background: var(--rust); border-color: var(--rust); color: var(--cream); }
   .btn-primary:hover { background: var(--gold); border-color: var(--gold); color: var(--dark); }
   .btn-outline { background: transparent; border-color: var(--sand); color: var(--sand); }
@@ -179,10 +217,11 @@
   }
   .vinyl-1 { width: 500px; height: 500px; top: -100px; right: -150px; }
   .vinyl-2 { width: 300px; height: 300px; bottom: -80px; left: -60px; opacity: 0.5; animation-duration: 20s; animation-direction: reverse; }
-
   @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-  section { padding: 6rem 2rem; position: relative; }
+  /* ── SECTIONS ── */
+  section { padding: 6rem 1.5rem; position: relative; }
+  .container { max-width: 1100px; margin: 0 auto; }
 
   .section-label {
     font-family: 'Special Elite', cursive;
@@ -192,36 +231,33 @@
     color: var(--rust);
     margin-bottom: 0.75rem;
   }
-
   .section-title {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-size: clamp(1.8rem, 5vw, 3.5rem);
     font-weight: 700;
     color: var(--cream);
     margin-bottom: 1rem;
   }
-
   .section-title em { color: var(--gold); font-style: italic; }
   .section-line { width: 60px; height: 2px; background: var(--rust); margin-bottom: 3rem; }
-  .container { max-width: 1100px; margin: 0 auto; }
 
+  /* ── MEMBERS ── */
   .members-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
     margin-top: 2rem;
   }
 
   .member-card {
     background: rgba(255,255,255,0.03);
     border: 1px solid rgba(200,149,42,0.2);
-    padding: 2rem 1.5rem;
+    padding: 1.75rem 1.25rem;
     text-align: center;
     transition: border-color 0.3s, transform 0.3s;
     position: relative;
     overflow: hidden;
   }
-
   .member-card::before {
     content: '';
     position: absolute;
@@ -231,148 +267,233 @@
     transform: scaleX(0);
     transition: transform 0.3s;
   }
-
   .member-card:hover { border-color: rgba(200,149,42,0.6); transform: translateY(-4px); }
   .member-card:hover::before { transform: scaleX(1); }
 
+  /* Photo avatar */
   .member-avatar {
-    width: 80px; height: 80px;
+    width: 90px; height: 90px;
     border-radius: 50%;
+    margin: 0 auto 1.25rem;
+    border: 2px solid rgba(200,149,42,0.5);
+    overflow: hidden;
     background: linear-gradient(135deg, var(--rust), var(--gold));
     display: flex; align-items: center; justify-content: center;
-    margin: 0 auto 1.25rem;
     font-family: 'Playfair Display', serif;
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     font-weight: 700;
     color: var(--dark);
-    border: 2px solid rgba(200,149,42,0.4);
+    position: relative;
   }
+  .member-avatar img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    position: absolute; inset: 0;
+  }
+  /* Placeholder initials shown when no photo */
+  .member-avatar .initials { position: relative; z-index: 1; }
 
-  .member-name { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: var(--cream); margin-bottom: 0.35rem; }
-  .member-role { font-family: 'Special Elite', cursive; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
-  .member-bio { font-size: 0.85rem; color: var(--muted); line-height: 1.7; font-style: italic; }
+  .member-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--cream); margin-bottom: 0.3rem; }
+  .member-role { font-family: 'Special Elite', cursive; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.7rem; }
+  .member-bio { font-size: 0.82rem; color: var(--muted); line-height: 1.7; font-style: italic; }
 
-  .songs-list { display: flex; flex-direction: column; gap: 0; }
+  /* ── SONGS ── */
+  .songs-list { display: flex; flex-direction: column; }
 
   .song-row {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
-    padding: 1.25rem 0;
+    gap: 1rem;
+    padding: 1rem 0.5rem;
     border-bottom: 1px solid rgba(200,149,42,0.12);
-    transition: background 0.2s, padding-left 0.2s;
+    transition: background 0.2s;
     cursor: default;
+    text-decoration: none;
   }
-
+  a.song-row { color: inherit; }
   .song-row.clickable { cursor: pointer; }
-  .song-row.clickable:hover { background: rgba(200,149,42,0.07); padding-left: 0.5rem; }
+  .song-row.clickable:hover { background: rgba(200,149,42,0.07); border-radius: 4px; }
   .song-row.clickable:hover .song-play { background: var(--gold); border-color: var(--gold); color: var(--dark); }
 
-  .song-num { font-family: 'Special Elite', cursive; font-size: 0.75rem; color: var(--muted); width: 28px; flex-shrink: 0; }
+  .song-num { font-family: 'Special Elite', cursive; font-size: 0.7rem; color: var(--muted); width: 24px; flex-shrink: 0; }
 
   .song-play {
-    width: 36px; height: 36px;
+    width: 34px; height: 34px;
     border-radius: 50%;
     border: 1px solid var(--rust);
     display: flex; align-items: center; justify-content: center;
     flex-shrink: 0;
     color: var(--rust);
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     transition: all 0.2s;
   }
 
-  .song-info { flex: 1; }
-  .song-title { font-family: 'Lora', serif; font-size: 1rem; color: var(--cream); font-weight: 400; }
-  .song-meta { font-family: 'Special Elite', cursive; font-size: 0.65rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.25rem; }
+  .song-info { flex: 1; min-width: 0; }
+  .song-title { font-family: 'Lora', serif; font-size: 0.95rem; color: var(--cream); font-weight: 400; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .song-meta { font-family: 'Special Elite', cursive; font-size: 0.6rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 0.2rem; }
 
   .song-tag {
     font-family: 'Special Elite', cursive;
-    font-size: 0.65rem;
-    padding: 0.25rem 0.75rem;
+    font-size: 0.6rem;
+    padding: 0.2rem 0.6rem;
     border: 1px solid rgba(200,149,42,0.3);
     color: var(--gold);
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
     border-radius: 2px;
     white-space: nowrap;
     flex-shrink: 0;
   }
   .song-tag.original { border-color: rgba(184,76,24,0.6); color: var(--rust); }
 
-  .song-dur { font-family: 'Special Elite', cursive; font-size: 0.75rem; color: var(--muted); width: 50px; text-align: right; flex-shrink: 0; }
+  .song-dur { font-family: 'Special Elite', cursive; font-size: 0.7rem; color: var(--muted); width: 44px; text-align: right; flex-shrink: 0; }
 
-  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
-  .about-text p { color: var(--sand); line-height: 1.9; font-size: 1rem; margin-bottom: 1.25rem; }
-  .about-text p em { color: var(--gold); }
-  .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-  .stat-box { border: 1px solid rgba(200,149,42,0.25); padding: 1.5rem; text-align: center; }
-  .stat-num { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700; color: var(--gold); font-style: italic; }
-  .stat-label { font-family: 'Special Elite', cursive; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-top: 0.35rem; }
-
-  .contact-section { background: rgba(45,74,47,0.1); border-top: 1px solid rgba(200,149,42,0.2); }
-  .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2rem; margin-top: 1rem; }
-  .contact-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(200,149,42,0.2); padding: 1.75rem; transition: border-color 0.2s; }
-  .contact-card:hover { border-color: rgba(200,149,42,0.5); }
-  .contact-icon { font-size: 1.5rem; margin-bottom: 1rem; display: block; color: var(--gold); }
-  .contact-type { font-family: 'Special Elite', cursive; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--rust); margin-bottom: 0.5rem; }
-  .contact-value { font-family: 'Lora', serif; font-size: 0.95rem; color: var(--sand); line-height: 1.6; }
-  .contact-value a { color: var(--sand); text-decoration: none; }
-  .contact-value a:hover { color: var(--gold); }
-
-  .social-row { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(200,149,42,0.15); align-items: center; }
-
-  .social-btn {
-    font-family: 'Special Elite', cursive;
-    font-size: 0.7rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    padding: 0.6rem 1.4rem;
-    border: 1px solid rgba(200,149,42,0.4);
-    color: var(--gold);
-    text-decoration: none;
-    transition: all 0.2s;
-    cursor: pointer;
-  }
-  .social-btn:hover { background: var(--gold); color: var(--dark); }
-
-  footer { text-align: center; padding: 2rem; border-top: 1px solid rgba(200,149,42,0.15); font-family: 'Special Elite', cursive; font-size: 0.7rem; letter-spacing: 0.1em; color: var(--muted); }
-
-  .page { display: none; }
-  .page.active { display: block; }
-
-  .tab-nav { display: flex; gap: 0; border-bottom: 1px solid rgba(200,149,42,0.2); margin-bottom: 3rem; flex-wrap: wrap; }
-
+  /* ── TABS ── */
+  .tab-nav { display: flex; border-bottom: 1px solid rgba(200,149,42,0.2); margin-bottom: 2rem; flex-wrap: wrap; gap: 0; }
   .tab-btn {
     font-family: 'Special Elite', cursive;
-    font-size: 0.75rem;
-    letter-spacing: 0.2em;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    padding: 0.75rem 1.5rem;
-    background: none;
-    border: none;
+    padding: 0.7rem 1.2rem;
+    background: none; border: none;
     color: var(--muted);
     cursor: pointer;
     border-bottom: 2px solid transparent;
     margin-bottom: -1px;
     transition: all 0.2s;
+    white-space: nowrap;
   }
   .tab-btn:hover { color: var(--sand); }
   .tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
 
-  .tab-content { display: none !important; overflow: hidden; height: 0; }
-  .tab-content.active { display: block !important; height: auto; }
+  .tab-content { display: none !important; }
+  .tab-content.active { display: block !important; }
 
-  .yt-hint { font-family: 'Special Elite', cursive; font-size: 0.68rem; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 1.5rem; text-transform: uppercase; }
+  .yt-hint { font-family: 'Special Elite', cursive; font-size: 0.65rem; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 1.25rem; text-transform: uppercase; }
 
+  /* ── ALBUM CARD ── */
+  .album-card-wrap { max-width: 260px; }
+  .album-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(200,149,42,0.2);
+    padding: 1.5rem;
+    text-align: left;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .album-card:hover { border-color: rgba(200,149,42,0.6); transform: translateY(-3px); }
+  .album-cover {
+    width: 100%; height: 150px;
+    background: linear-gradient(135deg, var(--rust), var(--dark));
+    border: 1px solid rgba(200,149,42,0.3);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1rem;
+  }
+  .album-cover span { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--gold); font-style: italic; }
+  .album-title { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--cream); margin-bottom: 0.3rem; }
+  .album-sub { font-family: 'Special Elite', cursive; font-size: 0.65rem; color: var(--gold); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.6rem; }
+  .album-desc { font-size: 0.82rem; color: var(--muted); font-style: italic; line-height: 1.6; }
+
+  /* ── ABOUT ── */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .about-text p { color: var(--sand); line-height: 1.9; font-size: 1rem; margin-bottom: 1.25rem; }
+  .about-text p em { color: var(--gold); }
+  .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+  .stat-box { border: 1px solid rgba(200,149,42,0.25); padding: 1.5rem; text-align: center; }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700; color: var(--gold); font-style: italic; }
+  .stat-label { font-family: 'Special Elite', cursive; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-top: 0.35rem; }
+
+  /* ── CONTACT ── */
+  .contact-section { background: rgba(45,74,47,0.1); border-top: 1px solid rgba(200,149,42,0.2); }
+
+  .contact-rows { display: flex; flex-direction: column; border-top: 1px solid rgba(200,149,42,0.2); }
+  .contact-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid rgba(200,149,42,0.1);
+  }
+  .contact-label {
+    font-family: 'Special Elite', cursive;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--rust);
+    width: 110px;
+    flex-shrink: 0;
+    padding-top: 2px;
+  }
+  .contact-val { font-family: 'Lora', serif; font-size: 0.95rem; color: var(--sand); line-height: 1.7; min-width: 0; word-break: break-word; }
+  .contact-val a { color: var(--sand); text-decoration: none; }
+  .contact-val a:hover { color: var(--gold); }
+  .contact-val small { font-size: 0.8rem; color: var(--muted); }
+
+  .social-row { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(200,149,42,0.15); align-items: center; }
+  .social-label { font-family: 'Special Elite', cursive; font-size: 0.7rem; letter-spacing: 0.2em; color: var(--muted); text-transform: uppercase; }
+  .social-btn {
+    font-family: 'Special Elite', cursive;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.55rem 1.2rem;
+    border: 1px solid rgba(200,149,42,0.4);
+    color: var(--gold);
+    text-decoration: none;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .social-btn:hover { background: var(--gold); color: var(--dark); }
+
+  /* ── FOOTER ── */
+  footer { text-align: center; padding: 2rem 1.5rem; border-top: 1px solid rgba(200,149,42,0.15); font-family: 'Special Elite', cursive; font-size: 0.7rem; letter-spacing: 0.1em; color: var(--muted); }
+
+  /* ── PAGES ── */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* ── ANIMATIONS ── */
   @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
   .fade-in   { animation: fadeUp 0.7s ease forwards; }
   .fade-in-2 { animation: fadeUp 0.7s 0.15s ease both; }
-  .fade-in-3 { animation: fadeUp 0.7s 0.3s  ease both; }
+  .fade-in-3 { animation: fadeUp 0.7s 0.3s ease both; }
 
-  @media (max-width: 720px) {
-    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
     nav { padding: 1rem 1.5rem; }
-    .nav-links { gap: 1rem; }
-    .vinyl-1 { display: none; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .vinyl-1 { width: 300px; height: 300px; top: -60px; right: -80px; }
+  }
+
+  @media (max-width: 600px) {
+    nav { padding: 0.85rem 1.25rem; }
+    section { padding: 4rem 1.25rem; }
+    .members-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1rem; }
+    .member-card { padding: 1.25rem 1rem; }
+    .member-avatar { width: 70px; height: 70px; font-size: 1.2rem; }
+    .about-stats { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+    .stat-num { font-size: 1.8rem; }
+    .contact-row { flex-direction: column; gap: 0.4rem; }
+    .contact-label { width: auto; }
+    .social-row { gap: 0.5rem; }
+    .tab-btn { padding: 0.6rem 0.9rem; font-size: 0.65rem; }
+    .song-tag { display: none; }
+    .vinyl-1, .vinyl-2 { display: none; }
+    .hero { padding: 5rem 1.25rem 3rem; }
+    .hero-badge { font-size: 0.6rem; letter-spacing: 0.15em; }
+    .btn { padding: 0.65rem 1.5rem; font-size: 0.75rem; }
+  }
+
+  @media (max-width: 400px) {
+    .members-grid { grid-template-columns: 1fr 1fr; }
+    .hero-title { font-size: clamp(2.2rem, 12vw, 3rem); }
+    .tab-nav { gap: 0; }
+    .tab-btn { padding: 0.5rem 0.7rem; letter-spacing: 0.08em; }
   }
 </style>
 </head>
@@ -387,9 +508,22 @@
     <li><a onclick="showPage('about')">About</a></li>
     <li><a onclick="showPage('contact')">Contact</a></li>
   </ul>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
-<!-- HOME PAGE -->
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a onclick="navTo('home')">Home</a></li>
+    <li><a onclick="navTo('members')">Members</a></li>
+    <li><a onclick="navTo('music')">Music</a></li>
+    <li><a onclick="navTo('about')">About</a></li>
+    <li><a onclick="navTo('contact')">Contact</a></li>
+  </ul>
+</div>
+
+<!-- HOME -->
 <div id="page-home" class="page active">
   <div class="hero">
     <div class="hero-bg"></div>
@@ -405,85 +539,122 @@
     </div>
   </div>
 
-  <section style="padding: 3rem 2rem; background: rgba(200,149,42,0.05); border-top: 1px solid rgba(200,149,42,0.15); border-bottom: 1px solid rgba(200,149,42,0.15);">
-    <div class="container" style="display:flex; gap:2rem; flex-wrap:wrap; justify-content:space-around; text-align:center;">
+  <section style="padding: 2.5rem 1.5rem; background: rgba(200,149,42,0.05); border-top: 1px solid rgba(200,149,42,0.15); border-bottom: 1px solid rgba(200,149,42,0.15);">
+    <div class="container" style="display:flex; gap:1.5rem; flex-wrap:wrap; justify-content:space-around; text-align:center;">
       <div>
-        <div style="font-family:'Playfair Display',serif;font-size:2rem;color:var(--gold);font-style:italic;">7</div>
-        <div style="font-family:'Special Elite',cursive;font-size:0.65rem;letter-spacing:0.2em;color:var(--muted);text-transform:uppercase;margin-top:4px;">Members</div>
+        <div style="font-family:'Playfair Display',serif;font-size:clamp(1.5rem,4vw,2rem);color:var(--gold);font-style:italic;">7</div>
+        <div style="font-family:'Special Elite',cursive;font-size:0.6rem;letter-spacing:0.15em;color:var(--muted);text-transform:uppercase;margin-top:4px;">Members</div>
       </div>
       <div>
-        <div style="font-family:'Playfair Display',serif;font-size:2rem;color:var(--gold);font-style:italic;">1</div>
-        <div style="font-family:'Special Elite',cursive;font-size:0.65rem;letter-spacing:0.2em;color:var(--muted);text-transform:uppercase;margin-top:4px;">Original Song</div>
+        <div style="font-family:'Playfair Display',serif;font-size:clamp(1.5rem,4vw,2rem);color:var(--gold);font-style:italic;">1</div>
+        <div style="font-family:'Special Elite',cursive;font-size:0.6rem;letter-spacing:0.15em;color:var(--muted);text-transform:uppercase;margin-top:4px;">Original Song</div>
       </div>
       <div>
-        <div style="font-family:'Playfair Display',serif;font-size:2rem;color:var(--gold);font-style:italic;">2024</div>
-        <div style="font-family:'Special Elite',cursive;font-size:0.65rem;letter-spacing:0.2em;color:var(--muted);text-transform:uppercase;margin-top:4px;">Est. in Stuttgart</div>
+        <div style="font-family:'Playfair Display',serif;font-size:clamp(1.5rem,4vw,2rem);color:var(--gold);font-style:italic;">2024</div>
+        <div style="font-family:'Special Elite',cursive;font-size:0.6rem;letter-spacing:0.15em;color:var(--muted);text-transform:uppercase;margin-top:4px;">Est. Stuttgart</div>
       </div>
       <div>
-        <div style="font-family:'Playfair Display',serif;font-size:2rem;color:var(--gold);font-style:italic;">5</div>
-        <div style="font-family:'Special Elite',cursive;font-size:0.65rem;letter-spacing:0.2em;color:var(--muted);text-transform:uppercase;margin-top:4px;">Live Shows</div>
+        <div style="font-family:'Playfair Display',serif;font-size:clamp(1.5rem,4vw,2rem);color:var(--gold);font-style:italic;">5</div>
+        <div style="font-family:'Special Elite',cursive;font-size:0.6rem;letter-spacing:0.15em;color:var(--muted);text-transform:uppercase;margin-top:4px;">Live Shows</div>
       </div>
     </div>
   </section>
 </div>
 
-<!-- MEMBERS PAGE -->
+<!-- MEMBERS -->
 <div id="page-members" class="page">
-  <section style="padding-top: 8rem;">
+  <section style="padding-top: 7rem;">
     <div class="container">
       <div class="section-label">The People Behind the Sound</div>
       <h2 class="section-title">Meet the <em>Band</em></h2>
       <div class="section-line"></div>
+
+      <!-- PHOTO INSTRUCTIONS (remove this comment block once photos are added):
+           To add a real photo, replace the <span class="initials">XX</span> inside
+           each .member-avatar with: <img src="your-photo.jpg" alt="Name">
+           Photos should be square, at least 200x200px, ideally cropped to face.
+      -->
+
       <div class="members-grid">
-<div class="member-card">
-          <div class="member-avatar">HB</div>
+
+        <div class="member-card">
+          <div class="member-avatar">
+            <span class="initials">HB</span>
+            <!-- <img src="hesmar.jpg" alt="Hesmar BK"> -->
+          </div>
           <div class="member-name">Hesmar BK</div>
           <div class="member-role">Lead Guitar</div>
           <div class="member-bio">A self-taught guitar wizard. Hesmar's riffs walk the line between classic rock and traditional Nepali scales with effortless grace.</div>
         </div>
-<div class="member-card">
-          <div class="member-avatar">JB</div>
+
+        <div class="member-card">
+          <div class="member-avatar">
+            <span class="initials">JB</span>
+            <!-- <img src="jp.jpg" alt="J.P. Bohara"> -->
+          </div>
           <div class="member-name">J.P. Bohara</div>
           <div class="member-role">Manager &amp; Side Vocalist</div>
           <div class="member-bio">J.P. holds the band together with fierce precision and provides soul to the band.</div>
         </div>
-<div class="member-card">
-          <div class="member-avatar">UB</div>
+
+        <div class="member-card">
+          <div class="member-avatar">
+            <span class="initials">UB</span>
+            <!-- <img src="umesh.jpg" alt="Umesh BK"> -->
+          </div>
           <div class="member-name">Umesh BK</div>
           <div class="member-role">Drums &amp; Percussion</div>
           <div class="member-bio">Trained in both Western drums and traditional madal, Umesh weaves rhythm stories that span continents and generations.</div>
         </div>
-<div class="member-card">
-          <div class="member-avatar">AT</div>
+
+        <div class="member-card">
+          <div class="member-avatar">
+            <span class="initials">AT</span>
+            <!-- <img src="ashok_tamang.jpg" alt="Ashok Tamang"> -->
+          </div>
           <div class="member-name">Ashok Tamang</div>
           <div class="member-role">Rhythm Guitar</div>
           <div class="member-bio">Ashok keeps the band grounded with steady, tight playing that drives the groove of every song.</div>
         </div>
-<div class="member-card">
-          <div class="member-avatar">ST</div>
+
+        <div class="member-card">
+          <div class="member-avatar">
+            <span class="initials">ST</span>
+            <!-- <img src="subash.jpg" alt="Subash Timalsina"> -->
+          </div>
           <div class="member-name">Subash Timalsina</div>
           <div class="member-role">Lead Vocalist</div>
-          <div class="member-bio">Subash’s voice moves listeners deeply, and he sings both rock and folk songs with ease.</div>
+          <div class="member-bio">Subash's voice moves listeners deeply, and he sings both rock and folk songs with ease.</div>
         </div>
-<div class="member-card">
-          <div class="member-avatar">AD</div>
+
+        <div class="member-card">
+          <div class="member-avatar">
+            <span class="initials">AD</span>
+            <!-- <img src="ashok_dahal.jpg" alt="Ashok Dahal"> -->
+          </div>
           <div class="member-name">Ashok Dahal</div>
           <div class="member-role">Lead Vocals &amp; Rhythm Guitar</div>
           <div class="member-bio">Ashok blends expressive guitar playing with a distinctive vocal style that adds depth to every performance.</div>
         </div>
-<div class="member-card">
-          <div class="member-avatar">MO</div>
+
+        <div class="member-card">
+          <div class="member-avatar">
+            <span class="initials">MO</span>
+            <!-- <img src="milan.jpg" alt="Milan Oli"> -->
+          </div>
           <div class="member-name">Milan Oli</div>
           <div class="member-role">Technical Manager</div>
           <div class="member-bio">Milan keeps everything running behind the scenes — from sound setup to stage coordination, nothing happens without him.</div>
-        </div></div>
+        </div>
+
+      </div>
     </div>
   </section>
 </div>
 
-<!-- MUSIC PAGE -->
+<!-- MUSIC -->
 <div id="page-music" class="page">
-  <section style="padding-top: 8rem;">
+  <section style="padding-top: 7rem;">
     <div class="container">
       <div class="section-label">Discography</div>
       <h2 class="section-title">Our <em>Music</em></h2>
@@ -498,7 +669,7 @@
 
       <!-- ALL SONGS -->
       <div id="tab-all" class="tab-content active">
-        <p class="yt-hint">&#9654; Click Maya K Ho to watch on YouTube</p>
+        <p class="yt-hint">&#9654; Click a song to watch on YouTube</p>
         <div class="songs-list">
           <a class="song-row clickable" href="https://www.youtube.com/watch?v=0b08TBQUdS0" target="_blank" rel="noopener" style="text-decoration:none;">
             <span class="song-num">01</span>
@@ -508,28 +679,42 @@
               <div class="song-meta">Swabalamban Boyz · 2025 · Original</div>
             </div>
             <span class="song-tag original">Original</span>
-            <span class="song-dur" style="color:var(--rust);">&#9654; YT</span>
+            <span class="song-dur" style="color:var(--rust);font-size:0.6rem;">&#9654; YT</span>
           </a>
-          <div class="song-row">
-            <span class="song-num">02</span><div class="song-play">&#9654;</div>
-            <div class="song-info"><div class="song-title">Bato Dekhi Aayeko</div><div class="song-meta">Cover</div></div>
-            <span class="song-tag">Cover</span><span class="song-dur">—</span>
-          </div>
-          <div class="song-row">
-            <span class="song-num">03</span><div class="song-play">&#9654;</div>
-            <div class="song-info"><div class="song-title">Mero Nepal</div><div class="song-meta">Cover</div></div>
-            <span class="song-tag">Cover</span><span class="song-dur">—</span>
-          </div>
-          <div class="song-row">
-            <span class="song-num">04</span><div class="song-play">&#9654;</div>
-            <div class="song-info"><div class="song-title">Aakash Bhanda Maathi</div><div class="song-meta">Cover</div></div>
-            <span class="song-tag">Cover</span><span class="song-dur">—</span>
-          </div>
-          <div class="song-row">
-            <span class="song-num">05</span><div class="song-play">&#9654;</div>
-            <div class="song-info"><div class="song-title">Timi Bina</div><div class="song-meta">Cover</div></div>
-            <span class="song-tag">Cover</span><span class="song-dur">—</span>
-          </div>
+          <a class="song-row clickable" href="https://youtu.be/m4ZQGjEbjlU" target="_blank" rel="noopener" style="text-decoration:none;">
+            <span class="song-num">02</span>
+            <div class="song-play">&#9654;</div>
+            <div class="song-info">
+              <div class="song-title">Jati Maya Laye Pani</div>
+              <div class="song-meta">Cover · Watch on YouTube</div>
+            </div>
+            <span class="song-tag">Cover</span>
+            <span class="song-dur" style="color:var(--rust);font-size:0.6rem;">&#9654; YT</span>
+          </a>
+          <a class="song-row clickable" href="https://youtu.be/4nQkCMhe3-s" target="_blank" rel="noopener" style="text-decoration:none;">
+            <span class="song-num">03</span>
+            <div class="song-play">&#9654;</div>
+            <div class="song-info">
+              <div class="song-title">Chiuri Phool</div>
+              <div class="song-meta">Cover · Watch on YouTube</div>
+            </div>
+            <span class="song-tag">Cover</span>
+            <span class="song-dur" style="color:var(--rust);font-size:0.6rem;">&#9654; YT</span>
+          </a>
+          <a class="song-row clickable" href="https://youtu.be/T5V0cib_pkU" target="_blank" rel="noopener" style="text-decoration:none;">
+            <span class="song-num">04</span>
+            <div class="song-play">&#9654;</div>
+            <div class="song-info">
+              <div class="song-title">Gorkhali Ko Chhoro</div>
+              <div class="song-meta">Cover · Watch on YouTube</div>
+            </div>
+            <span class="song-tag">Cover</span>
+            <span class="song-dur" style="color:var(--rust);font-size:0.6rem;">&#9654; YT</span>
+          </a>
+
+
+
+
         </div>
       </div>
 
@@ -542,34 +727,56 @@
             <div class="song-play">&#9654;</div>
             <div class="song-info">
               <div class="song-title">Maya K Ho</div>
-              <div class="song-meta">Swabalamban Boyz · 2024</div>
+              <div class="song-meta">Swabalamban Boyz · 2025</div>
             </div>
             <span class="song-tag original">Original</span>
-            <span class="song-dur" style="color:var(--rust);">&#9654; YT</span>
+            <span class="song-dur" style="color:var(--rust);font-size:0.6rem;">&#9654; YT</span>
           </a>
         </div>
       </div>
 
       <!-- COVERS -->
       <div id="tab-covers" class="tab-content">
+        <p class="yt-hint">&#9654; Songs with a YouTube link open directly on YouTube</p>
         <div class="songs-list">
-          <div class="song-row"><span class="song-num">01</span><div class="song-play">&#9654;</div><div class="song-info"><div class="song-title">Bato Dekhi Aayeko</div><div class="song-meta">Cover</div></div><span class="song-tag">Cover</span><span class="song-dur">—</span></div>
-          <div class="song-row"><span class="song-num">02</span><div class="song-play">&#9654;</div><div class="song-info"><div class="song-title">Mero Nepal</div><div class="song-meta">Cover</div></div><span class="song-tag">Cover</span><span class="song-dur">—</span></div>
-          <div class="song-row"><span class="song-num">03</span><div class="song-play">&#9654;</div><div class="song-info"><div class="song-title">Aakash Bhanda Maathi</div><div class="song-meta">Cover</div></div><span class="song-tag">Cover</span><span class="song-dur">—</span></div>
-          <div class="song-row"><span class="song-num">04</span><div class="song-play">&#9654;</div><div class="song-info"><div class="song-title">Timi Bina</div><div class="song-meta">Cover</div></div><span class="song-tag">Cover</span><span class="song-dur">—</span></div>
+          <a class="song-row clickable" href="https://youtu.be/m4ZQGjEbjlU" target="_blank" rel="noopener" style="text-decoration:none;">
+            <span class="song-num">01</span>
+            <div class="song-play">&#9654;</div>
+            <div class="song-info"><div class="song-title">Jati Maya Laye Pani</div><div class="song-meta">Cover · YouTube</div></div>
+            <span class="song-tag">Cover</span>
+            <span class="song-dur" style="color:var(--rust);font-size:0.6rem;">&#9654; YT</span>
+          </a>
+          <a class="song-row clickable" href="https://youtu.be/4nQkCMhe3-s" target="_blank" rel="noopener" style="text-decoration:none;">
+            <span class="song-num">02</span>
+            <div class="song-play">&#9654;</div>
+            <div class="song-info"><div class="song-title">Chiuri Phool</div><div class="song-meta">Cover · YouTube</div></div>
+            <span class="song-tag">Cover</span>
+            <span class="song-dur" style="color:var(--rust);font-size:0.6rem;">&#9654; YT</span>
+          </a>
+          <a class="song-row clickable" href="https://youtu.be/T5V0cib_pkU" target="_blank" rel="noopener" style="text-decoration:none;">
+            <span class="song-num">03</span>
+            <div class="song-play">&#9654;</div>
+            <div class="song-info"><div class="song-title">Gorkhali Ko Chhoro</div><div class="song-meta">Cover · YouTube</div></div>
+            <span class="song-tag">Cover</span>
+            <span class="song-dur" style="color:var(--rust);font-size:0.6rem;">&#9654; YT</span>
+          </a>
+
+
+
+
         </div>
       </div>
 
       <!-- ALBUMS -->
       <div id="tab-albums" class="tab-content">
-        <div style="max-width:280px;">
-          <a class="member-card" href="https://www.youtube.com/watch?v=0b08TBQUdS0" target="_blank" rel="noopener" style="text-align:left;cursor:pointer;text-decoration:none;display:block;">
-            <div style="width:100%;height:160px;background:linear-gradient(135deg,var(--rust),var(--dark));border:1px solid rgba(200,149,42,0.3);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;">
-              <span style="font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--gold);font-style:italic;">Maya K Ho</span>
+        <div class="album-card-wrap">
+          <a class="album-card" href="https://www.youtube.com/watch?v=0b08TBQUdS0" target="_blank" rel="noopener">
+            <div class="album-cover">
+              <span>Maya K Ho</span>
             </div>
-            <div class="member-name" style="font-size:1rem;">Maya K Ho</div>
-            <div class="member-role">2025 · 1 original track</div>
-            <div class="member-bio">Our debut original — a heartfelt Nepali rock track born in Stuttgart. Click to watch on YouTube.</div>
+            <div class="album-title">Maya K Ho</div>
+            <div class="album-sub">2025 · 1 original track</div>
+            <div class="album-desc">Our debut original — a heartfelt Nepali rock track born in Stuttgart. Click to watch on YouTube.</div>
           </a>
         </div>
       </div>
@@ -578,9 +785,9 @@
   </section>
 </div>
 
-<!-- ABOUT PAGE -->
+<!-- ABOUT -->
 <div id="page-about" class="page">
-  <section style="padding-top: 8rem;">
+  <section style="padding-top: 7rem;">
     <div class="container">
       <div class="section-label">Our Story</div>
       <h2 class="section-title">Who We <em>Are</em></h2>
@@ -603,51 +810,50 @@
   </section>
 </div>
 
-<!-- CONTACT PAGE -->
+<!-- CONTACT -->
 <div id="page-contact" class="page">
-  <section class="contact-section" style="padding-top: 8rem;">
+  <section class="contact-section" style="padding-top: 7rem;">
     <div class="container">
       <div class="section-label">Get in Touch</div>
       <h2 class="section-title">Contact <em>Us</em></h2>
       <div class="section-line"></div>
-            <div style="display:flex; flex-direction:column; gap:0; border-top:1px solid rgba(200,149,42,0.2);">
 
-        <div style="display:flex; align-items:flex-start; gap:2rem; padding:1.5rem 0; border-bottom:1px solid rgba(200,149,42,0.1);">
-          <div style="font-family:'Special Elite',cursive;font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--rust);width:120px;flex-shrink:0;padding-top:2px;">Email</div>
-          <div style="font-family:'Lora',serif;font-size:0.95rem;color:var(--sand);">
-            <a href="mailto:Swabalambanboyz.shn@gmail.com" style="color:var(--sand);text-decoration:none;word-break:break-all;">Swabalambanboyz.shn@gmail.com</a>
+      <div class="contact-rows">
+        <div class="contact-row">
+          <div class="contact-label">Email</div>
+          <div class="contact-val">
+            <a href="mailto:Swabalambanboyz.shn@gmail.com">Swabalambanboyz.shn@gmail.com</a>
           </div>
         </div>
-
-        <div style="display:flex; align-items:flex-start; gap:2rem; padding:1.5rem 0; border-bottom:1px solid rgba(200,149,42,0.1);">
-          <div style="font-family:'Special Elite',cursive;font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--rust);width:120px;flex-shrink:0;padding-top:2px;">Phone</div>
-          <div style="font-family:'Lora',serif;font-size:0.95rem;color:var(--sand);">
-            0 1575 4095381<br><span style="font-size:0.8rem;color:var(--muted);">Mon–Sat, 10am–6pm CET</span>
+        <div class="contact-row">
+          <div class="contact-label">Phone</div>
+          <div class="contact-val">
+            0 1575 4095381<br>
+            <small>Mon–Sat, 10am–6pm CET</small>
           </div>
         </div>
-
-        <div style="display:flex; align-items:flex-start; gap:2rem; padding:1.5rem 0; border-bottom:1px solid rgba(200,149,42,0.1);">
-          <div style="font-family:'Special Elite',cursive;font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--rust);width:120px;flex-shrink:0;padding-top:2px;">Based In</div>
-          <div style="font-family:'Lora',serif;font-size:0.95rem;color:var(--sand);">
-            Stuttgart, Germany<br><span style="font-size:0.8rem;color:var(--muted);">Available for shows across Germany</span>
+        <div class="contact-row">
+          <div class="contact-label">Based In</div>
+          <div class="contact-val">
+            Stuttgart, Germany<br>
+            <small>Available for shows across Germany</small>
           </div>
         </div>
-
-        <div style="display:flex; align-items:flex-start; gap:2rem; padding:1.5rem 0; border-bottom:1px solid rgba(200,149,42,0.1);">
-          <div style="font-family:'Special Elite',cursive;font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--rust);width:120px;flex-shrink:0;padding-top:2px;">Booking &amp; Press</div>
-          <div style="font-family:'Lora',serif;font-size:0.95rem;color:var(--sand);">
+        <div class="contact-row">
+          <div class="contact-label">Booking &amp; Press</div>
+          <div class="contact-val">
             For live shows, interviews, and media inquiries:<br>
-            <a href="mailto:Swabalambanboyz.shn@gmail.com" style="color:var(--sand);text-decoration:none;word-break:break-all;">Swabalambanboyz.shn@gmail.com</a>
+            <a href="mailto:Swabalambanboyz.shn@gmail.com">Swabalambanboyz.shn@gmail.com</a>
           </div>
         </div>
-
       </div>
+
       <div class="social-row">
-        <span style="font-family:'Special Elite',cursive;font-size:0.7rem;letter-spacing:0.2em;color:var(--muted);text-transform:uppercase;">Follow us ·</span>
+        <span class="social-label">Follow us ·</span>
         <a class="social-btn" href="https://www.facebook.com/share/1EVsXBLgBh/" target="_blank">Facebook</a>
         <a class="social-btn" href="https://www.instagram.com/swabalambanboyzband?igsh=MWV0cWNldTVjcWJraQ==" target="_blank">Instagram</a>
         <a class="social-btn" href="https://www.youtube.com/@SwabalambanBoyz" target="_blank">YouTube</a>
-        <a class="social-btn" href="https://www.tiktok.com/@swabalambanboyzband?_r=1&amp;_t=ZG-95fAw8hHmRk" target="_blank">TikTok</a>
+        <a class="social-btn" href="https://www.tiktok.com/@swabalambanboyzband?_r=1&_t=ZG-95fAw8hHmRk" target="_blank">TikTok</a>
       </div>
     </div>
   </section>
@@ -662,6 +868,23 @@
     document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
     document.getElementById('page-' + name).classList.add('active');
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    closeMobileMenu();
+  }
+
+  function navTo(name) {
+    showPage(name);
+  }
+
+  function toggleMenu() {
+    var btn = document.getElementById('hamburger');
+    var menu = document.getElementById('mobileMenu');
+    btn.classList.toggle('open');
+    menu.classList.toggle('open');
+  }
+
+  function closeMobileMenu() {
+    document.getElementById('hamburger').classList.remove('open');
+    document.getElementById('mobileMenu').classList.remove('open');
   }
 
   function showTab(event, name) {
@@ -671,20 +894,14 @@
     document.getElementById('tab-' + name).classList.add('active');
   }
 
-
-  function openYT_OLD(videoId) {
-    document.getElementById('ytFrame').src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1';
-    document.getElementById('ytOverlay').classList.add('open');
-  }
-
-  function closeYT() {
-    document.getElementById('ytFrame').src = '';
-    document.getElementById('ytOverlay').classList.remove('open');
-  }
-
-  function closeYTOutside(event) {
-    if (event.target === document.getElementById('ytOverlay')) { closeYT(); }
-  }
+  // Close mobile menu when clicking outside
+  document.addEventListener('click', function(e) {
+    var menu = document.getElementById('mobileMenu');
+    var btn = document.getElementById('hamburger');
+    if (menu.classList.contains('open') && !menu.contains(e.target) && !btn.contains(e.target)) {
+      closeMobileMenu();
+    }
+  });
 </script>
 </body>
 </html>
