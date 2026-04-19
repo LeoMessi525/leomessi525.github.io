@@ -60,13 +60,13 @@
     flex-shrink: 0;
   }
 
-  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links { display: flex; gap: 1.5rem; list-style: none; }
   .nav-links a {
     font-family: 'Special Elite', cursive;
     color: var(--sand);
     text-decoration: none;
-    font-size: 0.85rem;
-    letter-spacing: 0.1em;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     transition: color 0.2s;
     cursor: pointer;
@@ -74,7 +74,6 @@
   }
   .nav-links a:hover { color: var(--gold); }
 
-  /* Hamburger */
   .hamburger {
     display: none;
     flex-direction: column;
@@ -270,7 +269,6 @@
   .member-card:hover { border-color: rgba(200,149,42,0.6); transform: translateY(-4px); }
   .member-card:hover::before { transform: scaleX(1); }
 
-  /* Photo avatar */
   .member-avatar {
     width: 90px; height: 90px;
     border-radius: 50%;
@@ -291,7 +289,6 @@
     object-position: top center;
     position: absolute; inset: 0;
   }
-  /* Placeholder initials shown when no photo */
   .member-avatar .initials { position: relative; z-index: 1; }
 
   .member-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--cream); margin-bottom: 0.3rem; }
@@ -300,7 +297,6 @@
 
   /* ── SONGS ── */
   .songs-list { display: flex; flex-direction: column; }
-
   .song-row {
     display: flex;
     align-items: center;
@@ -317,7 +313,6 @@
   .song-row.clickable:hover .song-play { background: var(--gold); border-color: var(--gold); color: var(--dark); }
 
   .song-num { font-family: 'Special Elite', cursive; font-size: 0.7rem; color: var(--muted); width: 24px; flex-shrink: 0; }
-
   .song-play {
     width: 34px; height: 34px;
     border-radius: 50%;
@@ -328,7 +323,6 @@
     font-size: 0.65rem;
     transition: all 0.2s;
   }
-
   .song-info { flex: 1; min-width: 0; }
   .song-title { font-family: 'Lora', serif; font-size: 0.95rem; color: var(--cream); font-weight: 400; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .song-meta { font-family: 'Special Elite', cursive; font-size: 0.6rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 0.2rem; }
@@ -345,7 +339,6 @@
     flex-shrink: 0;
   }
   .song-tag.original { border-color: rgba(184,76,24,0.6); color: var(--rust); }
-
   .song-dur { font-family: 'Special Elite', cursive; font-size: 0.7rem; color: var(--muted); width: 44px; text-align: right; flex-shrink: 0; }
 
   /* ── TABS ── */
@@ -366,10 +359,8 @@
   }
   .tab-btn:hover { color: var(--sand); }
   .tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
-
   .tab-content { display: none !important; }
   .tab-content.active { display: block !important; }
-
   .yt-hint { font-family: 'Special Elite', cursive; font-size: 0.65rem; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 1.25rem; text-transform: uppercase; }
 
   /* ── ALBUM CARD ── */
@@ -408,7 +399,6 @@
 
   /* ── CONTACT ── */
   .contact-section { background: rgba(45,74,47,0.1); border-top: 1px solid rgba(200,149,42,0.2); }
-
   .contact-rows { display: flex; flex-direction: column; border-top: 1px solid rgba(200,149,42,0.2); }
   .contact-row {
     display: flex;
@@ -432,21 +422,127 @@
   .contact-val a:hover { color: var(--gold); }
   .contact-val small { font-size: 0.8rem; color: var(--muted); }
 
+  /* ── SOCIAL BUTTONS WITH LOGOS ── */
   .social-row { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(200,149,42,0.15); align-items: center; }
   .social-label { font-family: 'Special Elite', cursive; font-size: 0.7rem; letter-spacing: 0.2em; color: var(--muted); text-transform: uppercase; }
+
   .social-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     font-family: 'Special Elite', cursive;
     font-size: 0.68rem;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    padding: 0.55rem 1.2rem;
-    border: 1px solid rgba(200,149,42,0.4);
-    color: var(--gold);
+    padding: 0.55rem 1rem;
+    border: 1px solid rgba(200,149,42,0.3);
     text-decoration: none;
     transition: all 0.2s;
     white-space: nowrap;
+    color: var(--sand);
+    background: rgba(255,255,255,0.03);
   }
-  .social-btn:hover { background: var(--gold); color: var(--dark); }
+  .social-btn:hover { transform: translateY(-2px); border-color: rgba(200,149,42,0.7); }
+
+  .social-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+  .social-btn.facebook { border-color: rgba(24,119,242,0.5); }
+  .social-btn.facebook:hover { background: rgba(24,119,242,0.15); border-color: #1877F2; }
+  .social-btn.instagram { border-color: rgba(225,48,108,0.5); }
+  .social-btn.instagram:hover { background: rgba(225,48,108,0.15); border-color: #E1306C; }
+  .social-btn.youtube { border-color: rgba(255,0,0,0.5); }
+  .social-btn.youtube:hover { background: rgba(255,0,0,0.15); border-color: #FF0000; }
+  .social-btn.tiktok { border-color: rgba(105,201,208,0.5); }
+  .social-btn.tiktok:hover { background: rgba(105,201,208,0.15); border-color: #69C9D0; }
+
+  /* ── NEWS / UPDATES ── */
+  .updates-section { background: rgba(45,74,47,0.05); }
+
+  .updates-intro {
+    font-family: 'Lora', serif;
+    font-size: 1rem;
+    color: var(--sand);
+    line-height: 1.8;
+    margin-bottom: 3rem;
+    font-style: italic;
+  }
+
+  .social-feed-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .social-feed-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(200,149,42,0.2);
+    padding: 1.5rem;
+    text-decoration: none;
+    display: block;
+    transition: border-color 0.3s, transform 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .social-feed-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    transition: opacity 0.3s;
+  }
+  .social-feed-card.fb::before { background: #1877F2; }
+  .social-feed-card.ig::before { background: linear-gradient(90deg, #F58529, #E1306C, #833AB4); }
+  .social-feed-card.yt::before { background: #FF0000; }
+  .social-feed-card.tt::before { background: #69C9D0; }
+  .social-feed-card:hover { border-color: rgba(200,149,42,0.5); transform: translateY(-3px); }
+
+  .sfc-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  .sfc-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .sfc-icon svg { width: 20px; height: 20px; }
+  .sfc-icon.fb { background: #1877F2; }
+  .sfc-icon.ig { background: linear-gradient(135deg, #F58529, #E1306C, #833AB4); }
+  .sfc-icon.yt { background: #FF0000; }
+  .sfc-icon.tt { background: #010101; border: 1px solid rgba(105,201,208,0.5); }
+
+  .sfc-platform {
+    font-family: 'Special Elite', cursive;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .sfc-handle {
+    font-family: 'Lora', serif;
+    font-size: 0.9rem;
+    color: var(--cream);
+    margin-top: 1px;
+  }
+  .sfc-desc {
+    font-family: 'Lora', serif;
+    font-size: 0.85rem;
+    color: var(--sand);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+  .sfc-cta {
+    font-family: 'Special Elite', cursive;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .sfc-cta::after { content: ' →'; }
 
   /* ── FOOTER ── */
   footer { text-align: center; padding: 2rem 1.5rem; border-top: 1px solid rgba(200,149,42,0.15); font-family: 'Special Elite', cursive; font-size: 0.7rem; letter-spacing: 0.1em; color: var(--muted); }
@@ -469,7 +565,6 @@
     .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
     .vinyl-1 { width: 300px; height: 300px; top: -60px; right: -80px; }
   }
-
   @media (max-width: 600px) {
     nav { padding: 0.85rem 1.25rem; }
     section { padding: 4rem 1.25rem; }
@@ -481,19 +576,18 @@
     .contact-row { flex-direction: column; gap: 0.4rem; }
     .contact-label { width: auto; }
     .social-row { gap: 0.5rem; }
-    .tab-btn { padding: 0.6rem 0.9rem; font-size: 0.65rem; }
+    .tab-btn { padding: 0.6rem 0.75rem; font-size: 0.62rem; }
     .song-tag { display: none; }
     .vinyl-1, .vinyl-2 { display: none; }
     .hero { padding: 5rem 1.25rem 3rem; }
     .hero-badge { font-size: 0.6rem; letter-spacing: 0.15em; }
     .btn { padding: 0.65rem 1.5rem; font-size: 0.75rem; }
+    .social-feed-grid { grid-template-columns: 1fr; }
   }
-
   @media (max-width: 400px) {
     .members-grid { grid-template-columns: 1fr 1fr; }
     .hero-title { font-size: clamp(2.2rem, 12vw, 3rem); }
-    .tab-nav { gap: 0; }
-    .tab-btn { padding: 0.5rem 0.7rem; letter-spacing: 0.08em; }
+    .tab-btn { padding: 0.5rem 0.6rem; letter-spacing: 0.06em; }
   }
 </style>
 </head>
@@ -505,6 +599,7 @@
     <li><a onclick="showPage('home')">Home</a></li>
     <li><a onclick="showPage('members')">Members</a></li>
     <li><a onclick="showPage('music')">Music</a></li>
+    <li><a onclick="showPage('updates')">Updates</a></li>
     <li><a onclick="showPage('about')">About</a></li>
     <li><a onclick="showPage('contact')">Contact</a></li>
   </ul>
@@ -518,6 +613,7 @@
     <li><a onclick="navTo('home')">Home</a></li>
     <li><a onclick="navTo('members')">Members</a></li>
     <li><a onclick="navTo('music')">Music</a></li>
+    <li><a onclick="navTo('updates')">Updates</a></li>
     <li><a onclick="navTo('about')">About</a></li>
     <li><a onclick="navTo('contact')">Contact</a></li>
   </ul>
@@ -538,7 +634,6 @@
       <span class="btn btn-outline" onclick="showPage('members')">Meet the Band</span>
     </div>
   </div>
-
   <section style="padding: 2.5rem 1.5rem; background: rgba(200,149,42,0.05); border-top: 1px solid rgba(200,149,42,0.15); border-bottom: 1px solid rgba(200,149,42,0.15);">
     <div class="container" style="display:flex; gap:1.5rem; flex-wrap:wrap; justify-content:space-around; text-align:center;">
       <div>
@@ -568,78 +663,49 @@
       <div class="section-label">The People Behind the Sound</div>
       <h2 class="section-title">Meet the <em>Band</em></h2>
       <div class="section-line"></div>
-
-      <!-- PHOTO INSTRUCTIONS (remove this comment block once photos are added):
-           To add a real photo, replace the <span class="initials">XX</span> inside
-           each .member-avatar with: <img src="your-photo.jpg" alt="Name">
-           Photos should be square, at least 200x200px, ideally cropped to face.
-      -->
-
       <div class="members-grid">
-
         <div class="member-card">
-          <div class="member-avatar">
-            <img src="hesmar.jpg" alt="Hesmar BK">
-          </div>
+          <div class="member-avatar"><img src="hesmar.jpg" alt="Hesmar BK"></div>
           <div class="member-name">Hesmar BK</div>
           <div class="member-role">Lead Guitar</div>
           <div class="member-bio">A self-taught guitar wizard. Hesmar's riffs walk the line between classic rock and traditional Nepali scales with effortless grace.</div>
         </div>
-
         <div class="member-card">
-          <div class="member-avatar">
-            <img src="jp.jpg" alt="J.P. Bohara">
-          </div>
+          <div class="member-avatar"><img src="jp.jpg" alt="J.P. Bohara"></div>
           <div class="member-name">J.P. Bohara</div>
           <div class="member-role">Manager &amp; Side Vocalist</div>
           <div class="member-bio">J.P. holds the band together with fierce precision and provides soul to the band.</div>
         </div>
-
         <div class="member-card">
-          <div class="member-avatar">
-            <img src="umesh.jpg" alt="Umesh BK">
-          </div>
+          <div class="member-avatar"><img src="umesh.jpg" alt="Umesh BK"></div>
           <div class="member-name">Umesh BK</div>
           <div class="member-role">Drums &amp; Percussion</div>
           <div class="member-bio">Trained in both Western drums and traditional madal, Umesh weaves rhythm stories that span continents and generations.</div>
         </div>
-
         <div class="member-card">
-          <div class="member-avatar">
-            <img src="ashok_tamang.jpg" alt="Ashok Tamang">
-          </div>
+          <div class="member-avatar"><img src="ashok_tamang.jpg" alt="Ashok Tamang"></div>
           <div class="member-name">Ashok Tamang</div>
           <div class="member-role">Rhythm Guitar</div>
           <div class="member-bio">Ashok keeps the band grounded with steady, tight playing that drives the groove of every song.</div>
         </div>
-
         <div class="member-card">
-          <div class="member-avatar">
-            <img src="subash.jpg" alt="Subash Timalsina">
-          </div>
+          <div class="member-avatar"><img src="subash.jpg" alt="Subash Timalsina"></div>
           <div class="member-name">Subash Timalsina</div>
           <div class="member-role">Lead Vocalist</div>
           <div class="member-bio">Subash's voice moves listeners deeply, and he sings both rock and folk songs with ease.</div>
         </div>
-
         <div class="member-card">
-          <div class="member-avatar">
-            <img src="ashok_d.jpg" alt="Ashok Dahal">
-          </div>
+          <div class="member-avatar"><img src="ashok_d.jpg" alt="Ashok Dahal"></div>
           <div class="member-name">Ashok Dahal</div>
           <div class="member-role">Lead Vocals &amp; Rhythm Guitar</div>
           <div class="member-bio">Ashok blends expressive guitar playing with a distinctive vocal style that adds depth to every performance.</div>
         </div>
-
         <div class="member-card">
-          <div class="member-avatar">
-            <img src="milan.jpg" alt="Milan Oli">
-          </div>
+          <div class="member-avatar"><img src="milan.jpg" alt="Milan Oli"></div>
           <div class="member-name">Milan Oli</div>
           <div class="member-role">Technical Manager</div>
           <div class="member-bio">Milan keeps everything running behind the scenes — from sound setup to stage coordination, nothing happens without him.</div>
         </div>
-
       </div>
     </div>
   </section>
@@ -652,7 +718,6 @@
       <div class="section-label">Discography</div>
       <h2 class="section-title">Our <em>Music</em></h2>
       <div class="section-line"></div>
-
       <div class="tab-nav">
         <button class="tab-btn active" onclick="showTab(event,'all')">All Songs</button>
         <button class="tab-btn" onclick="showTab(event,'original')">Original</button>
@@ -665,49 +730,29 @@
         <p class="yt-hint">&#9654; Click a song to watch on YouTube</p>
         <div class="songs-list">
           <a class="song-row clickable" href="https://www.youtube.com/watch?v=0b08TBQUdS0" target="_blank" rel="noopener" style="text-decoration:none;">
-            <span class="song-num">01</span>
-            <div class="song-play">&#9654;</div>
-            <div class="song-info">
-              <div class="song-title">Maya K Ho</div>
-              <div class="song-meta">Swabalamban Boyz · 2025 · Original</div>
-            </div>
+            <span class="song-num">01</span><div class="song-play">&#9654;</div>
+            <div class="song-info"><div class="song-title">Maya K Ho</div><div class="song-meta">Swabalamban Boyz · 2025 · Original</div></div>
             <span class="song-tag original">Original</span>
             <span class="song-dur" style="color:var(--rust);font-size:0.6rem;">&#9654; YT</span>
           </a>
           <a class="song-row clickable" href="https://youtu.be/m4ZQGjEbjlU" target="_blank" rel="noopener" style="text-decoration:none;">
-            <span class="song-num">02</span>
-            <div class="song-play">&#9654;</div>
-            <div class="song-info">
-              <div class="song-title">Jati Maya Laye Pani</div>
-              <div class="song-meta">Cover · Watch on YouTube</div>
-            </div>
+            <span class="song-num">02</span><div class="song-play">&#9654;</div>
+            <div class="song-info"><div class="song-title">Jati Maya Laye Pani</div><div class="song-meta">Cover · Watch on YouTube</div></div>
             <span class="song-tag">Cover</span>
             <span class="song-dur" style="color:var(--rust);font-size:0.6rem;">&#9654; YT</span>
           </a>
           <a class="song-row clickable" href="https://youtu.be/4nQkCMhe3-s" target="_blank" rel="noopener" style="text-decoration:none;">
-            <span class="song-num">03</span>
-            <div class="song-play">&#9654;</div>
-            <div class="song-info">
-              <div class="song-title">Chiuri Phool</div>
-              <div class="song-meta">Cover · Watch on YouTube</div>
-            </div>
+            <span class="song-num">03</span><div class="song-play">&#9654;</div>
+            <div class="song-info"><div class="song-title">Chiuri Phool</div><div class="song-meta">Cover · Watch on YouTube</div></div>
             <span class="song-tag">Cover</span>
             <span class="song-dur" style="color:var(--rust);font-size:0.6rem;">&#9654; YT</span>
           </a>
           <a class="song-row clickable" href="https://youtu.be/T5V0cib_pkU" target="_blank" rel="noopener" style="text-decoration:none;">
-            <span class="song-num">04</span>
-            <div class="song-play">&#9654;</div>
-            <div class="song-info">
-              <div class="song-title">Gorkhali Ko Chhoro</div>
-              <div class="song-meta">Cover · Watch on YouTube</div>
-            </div>
+            <span class="song-num">04</span><div class="song-play">&#9654;</div>
+            <div class="song-info"><div class="song-title">Gorkhali Ko Chhoro</div><div class="song-meta">Cover · Watch on YouTube</div></div>
             <span class="song-tag">Cover</span>
             <span class="song-dur" style="color:var(--rust);font-size:0.6rem;">&#9654; YT</span>
           </a>
-
-
-
-
         </div>
       </div>
 
@@ -716,12 +761,8 @@
         <p class="yt-hint">&#9654; Click to watch on YouTube</p>
         <div class="songs-list">
           <a class="song-row clickable" href="https://www.youtube.com/watch?v=0b08TBQUdS0" target="_blank" rel="noopener" style="text-decoration:none;">
-            <span class="song-num">01</span>
-            <div class="song-play">&#9654;</div>
-            <div class="song-info">
-              <div class="song-title">Maya K Ho</div>
-              <div class="song-meta">Swabalamban Boyz · 2025</div>
-            </div>
+            <span class="song-num">01</span><div class="song-play">&#9654;</div>
+            <div class="song-info"><div class="song-title">Maya K Ho</div><div class="song-meta">Swabalamban Boyz · 2025</div></div>
             <span class="song-tag original">Original</span>
             <span class="song-dur" style="color:var(--rust);font-size:0.6rem;">&#9654; YT</span>
           </a>
@@ -730,33 +771,26 @@
 
       <!-- COVERS -->
       <div id="tab-covers" class="tab-content">
-        <p class="yt-hint">&#9654; Songs with a YouTube link open directly on YouTube</p>
+        <p class="yt-hint">&#9654; Click to watch on YouTube</p>
         <div class="songs-list">
           <a class="song-row clickable" href="https://youtu.be/m4ZQGjEbjlU" target="_blank" rel="noopener" style="text-decoration:none;">
-            <span class="song-num">01</span>
-            <div class="song-play">&#9654;</div>
+            <span class="song-num">01</span><div class="song-play">&#9654;</div>
             <div class="song-info"><div class="song-title">Jati Maya Laye Pani</div><div class="song-meta">Cover · YouTube</div></div>
             <span class="song-tag">Cover</span>
             <span class="song-dur" style="color:var(--rust);font-size:0.6rem;">&#9654; YT</span>
           </a>
           <a class="song-row clickable" href="https://youtu.be/4nQkCMhe3-s" target="_blank" rel="noopener" style="text-decoration:none;">
-            <span class="song-num">02</span>
-            <div class="song-play">&#9654;</div>
+            <span class="song-num">02</span><div class="song-play">&#9654;</div>
             <div class="song-info"><div class="song-title">Chiuri Phool</div><div class="song-meta">Cover · YouTube</div></div>
             <span class="song-tag">Cover</span>
             <span class="song-dur" style="color:var(--rust);font-size:0.6rem;">&#9654; YT</span>
           </a>
           <a class="song-row clickable" href="https://youtu.be/T5V0cib_pkU" target="_blank" rel="noopener" style="text-decoration:none;">
-            <span class="song-num">03</span>
-            <div class="song-play">&#9654;</div>
+            <span class="song-num">03</span><div class="song-play">&#9654;</div>
             <div class="song-info"><div class="song-title">Gorkhali Ko Chhoro</div><div class="song-meta">Cover · YouTube</div></div>
             <span class="song-tag">Cover</span>
             <span class="song-dur" style="color:var(--rust);font-size:0.6rem;">&#9654; YT</span>
           </a>
-
-
-
-
         </div>
       </div>
 
@@ -764,16 +798,90 @@
       <div id="tab-albums" class="tab-content">
         <div class="album-card-wrap">
           <a class="album-card" href="https://www.youtube.com/watch?v=0b08TBQUdS0" target="_blank" rel="noopener">
-            <div class="album-cover">
-              <span>Maya K Ho</span>
-            </div>
+            <div class="album-cover"><span>Maya K Ho</span></div>
             <div class="album-title">Maya K Ho</div>
             <div class="album-sub">2025 · 1 original track</div>
             <div class="album-desc">Our debut original — a heartfelt Nepali rock track born in Stuttgart. Click to watch on YouTube.</div>
           </a>
         </div>
       </div>
+    </div>
+  </section>
+</div>
 
+<!-- UPDATES -->
+<div id="page-updates" class="page">
+  <section class="updates-section" style="padding-top: 7rem;">
+    <div class="container">
+      <div class="section-label">Stay Connected</div>
+      <h2 class="section-title">Latest <em>Updates</em></h2>
+      <div class="section-line"></div>
+
+      <p class="updates-intro">Follow us on our social channels for the latest news, behind-the-scenes moments, upcoming shows, and new music. We post regularly — don't miss a beat!</p>
+
+      <div class="social-feed-grid">
+
+        <!-- Facebook -->
+        <a class="social-feed-card fb" href="https://www.facebook.com/share/1EVsXBLgBh/" target="_blank" rel="noopener">
+          <div class="sfc-header">
+            <div class="sfc-icon fb">
+              <svg viewBox="0 0 24 24" fill="white"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.532-4.697 1.312 0 2.686.235 2.686.235v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.269h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
+            </div>
+            <div>
+              <div class="sfc-platform">Facebook</div>
+              <div class="sfc-handle">Swabalamban Boyz</div>
+            </div>
+          </div>
+          <div class="sfc-desc">Show announcements, event photos, and updates from the band. Like our page and never miss a show near you.</div>
+          <div class="sfc-cta">Visit our Facebook page</div>
+        </a>
+
+        <!-- Instagram -->
+        <a class="social-feed-card ig" href="https://www.instagram.com/swabalambanboyzband?igsh=MWV0cWNldTVjcWJraQ==" target="_blank" rel="noopener">
+          <div class="sfc-header">
+            <div class="sfc-icon ig">
+              <svg viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </div>
+            <div>
+              <div class="sfc-platform">Instagram</div>
+              <div class="sfc-handle">@swabalambanboyzband</div>
+            </div>
+          </div>
+          <div class="sfc-desc">Behind-the-scenes photos, rehearsal clips, and moments from our live shows. Follow us for daily updates.</div>
+          <div class="sfc-cta">Follow on Instagram</div>
+        </a>
+
+        <!-- YouTube -->
+        <a class="social-feed-card yt" href="https://www.youtube.com/@SwabalambanBoyz" target="_blank" rel="noopener">
+          <div class="sfc-header">
+            <div class="sfc-icon yt">
+              <svg viewBox="0 0 24 24" fill="white"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </div>
+            <div>
+              <div class="sfc-platform">YouTube</div>
+              <div class="sfc-handle">@SwabalambanBoyz</div>
+            </div>
+          </div>
+          <div class="sfc-desc">Watch our music videos, live performances, and covers. Subscribe to get notified when we drop new content.</div>
+          <div class="sfc-cta">Subscribe on YouTube</div>
+        </a>
+
+        <!-- TikTok -->
+        <a class="social-feed-card tt" href="https://www.tiktok.com/@swabalambanboyzband?_r=1&_t=ZG-95fAw8hHmRk" target="_blank" rel="noopener">
+          <div class="sfc-header">
+            <div class="sfc-icon tt">
+              <svg viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.24 8.24 0 004.84 1.56V6.78a4.85 4.85 0 01-1.07-.09z"/></svg>
+            </div>
+            <div>
+              <div class="sfc-platform">TikTok</div>
+              <div class="sfc-handle">@swabalambanboyzband</div>
+            </div>
+          </div>
+          <div class="sfc-desc">Short clips, fun moments, and music snippets. Follow us on TikTok for our most entertaining content.</div>
+          <div class="sfc-cta">Follow on TikTok</div>
+        </a>
+
+      </div>
     </div>
   </section>
 </div>
@@ -810,43 +918,47 @@
       <div class="section-label">Get in Touch</div>
       <h2 class="section-title">Contact <em>Us</em></h2>
       <div class="section-line"></div>
-
       <div class="contact-rows">
         <div class="contact-row">
           <div class="contact-label">Email</div>
-          <div class="contact-val">
-            <a href="mailto:Swabalambanboyz.shn@gmail.com">Swabalambanboyz.shn@gmail.com</a>
-          </div>
+          <div class="contact-val"><a href="mailto:Swabalambanboyz.shn@gmail.com">Swabalambanboyz.shn@gmail.com</a></div>
         </div>
         <div class="contact-row">
           <div class="contact-label">Phone</div>
-          <div class="contact-val">
-            0 1575 4095381<br>
-            <small>Mon–Sat, 10am–6pm CET</small>
-          </div>
+          <div class="contact-val">0 1575 4095381<br><small>Mon–Sat, 10am–6pm CET</small></div>
         </div>
         <div class="contact-row">
           <div class="contact-label">Based In</div>
-          <div class="contact-val">
-            Stuttgart, Germany<br>
-            <small>Available for shows across Germany</small>
-          </div>
+          <div class="contact-val">Stuttgart, Germany<br><small>Available for shows across Germany</small></div>
         </div>
         <div class="contact-row">
           <div class="contact-label">Booking &amp; Press</div>
-          <div class="contact-val">
-            For live shows, interviews, and media inquiries:<br>
-            <a href="mailto:Swabalambanboyz.shn@gmail.com">Swabalambanboyz.shn@gmail.com</a>
-          </div>
+          <div class="contact-val">For live shows, interviews, and media inquiries:<br><a href="mailto:Swabalambanboyz.shn@gmail.com">Swabalambanboyz.shn@gmail.com</a></div>
         </div>
       </div>
 
       <div class="social-row">
         <span class="social-label">Follow us ·</span>
-        <a class="social-btn" href="https://www.facebook.com/share/1EVsXBLgBh/" target="_blank">Facebook</a>
-        <a class="social-btn" href="https://www.instagram.com/swabalambanboyzband?igsh=MWV0cWNldTVjcWJraQ==" target="_blank">Instagram</a>
-        <a class="social-btn" href="https://www.youtube.com/@SwabalambanBoyz" target="_blank">YouTube</a>
-        <a class="social-btn" href="https://www.tiktok.com/@swabalambanboyzband?_r=1&_t=ZG-95fAw8hHmRk" target="_blank">TikTok</a>
+
+        <a class="social-btn facebook" href="https://www.facebook.com/share/1EVsXBLgBh/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.532-4.697 1.312 0 2.686.235 2.686.235v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.269h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
+          Facebook
+        </a>
+
+        <a class="social-btn instagram" href="https://www.instagram.com/swabalambanboyzband?igsh=MWV0cWNldTVjcWJraQ==" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><defs><linearGradient id="ig-grad" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#F58529"/><stop offset="50%" style="stop-color:#E1306C"/><stop offset="100%" style="stop-color:#833AB4"/></linearGradient></defs><path fill="url(#ig-grad)" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          Instagram
+        </a>
+
+        <a class="social-btn youtube" href="https://www.youtube.com/@SwabalambanBoyz" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="#FF0000"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          YouTube
+        </a>
+
+        <a class="social-btn tiktok" href="https://www.tiktok.com/@swabalambanboyzband?_r=1&_t=ZG-95fAw8hHmRk" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="#69C9D0"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.24 8.24 0 004.84 1.56V6.78a4.85 4.85 0 01-1.07-.09z"/></svg>
+          TikTok
+        </a>
       </div>
     </div>
   </section>
@@ -863,31 +975,21 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
     closeMobileMenu();
   }
-
-  function navTo(name) {
-    showPage(name);
-  }
-
+  function navTo(name) { showPage(name); }
   function toggleMenu() {
-    var btn = document.getElementById('hamburger');
-    var menu = document.getElementById('mobileMenu');
-    btn.classList.toggle('open');
-    menu.classList.toggle('open');
+    document.getElementById('hamburger').classList.toggle('open');
+    document.getElementById('mobileMenu').classList.toggle('open');
   }
-
   function closeMobileMenu() {
     document.getElementById('hamburger').classList.remove('open');
     document.getElementById('mobileMenu').classList.remove('open');
   }
-
   function showTab(event, name) {
     document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
     document.querySelectorAll('.tab-content').forEach(function(t) { t.classList.remove('active'); });
     event.target.classList.add('active');
     document.getElementById('tab-' + name).classList.add('active');
   }
-
-  // Close mobile menu when clicking outside
   document.addEventListener('click', function(e) {
     var menu = document.getElementById('mobileMenu');
     var btn = document.getElementById('hamburger');
