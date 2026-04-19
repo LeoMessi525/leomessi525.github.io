@@ -202,9 +202,7 @@
   }
 
   .section-title em { color: var(--gold); font-style: italic; }
-
   .section-line { width: 60px; height: 2px; background: var(--rust); margin-bottom: 3rem; }
-
   .container { max-width: 1100px; margin: 0 auto; }
 
   .members-grid {
@@ -254,7 +252,6 @@
   .member-role { font-family: 'Special Elite', cursive; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
   .member-bio { font-size: 0.85rem; color: var(--muted); line-height: 1.7; font-style: italic; }
 
-  .songs-section { background: rgba(200,149,42,0.04); }
   .songs-list { display: flex; flex-direction: column; gap: 0; }
 
   .song-row {
@@ -264,9 +261,12 @@
     padding: 1.25rem 0;
     border-bottom: 1px solid rgba(200,149,42,0.12);
     transition: background 0.2s, padding-left 0.2s;
-    cursor: pointer;
+    cursor: default;
   }
-  .song-row:hover { background: rgba(200,149,42,0.05); padding-left: 0.5rem; }
+
+  .song-row.clickable { cursor: pointer; }
+  .song-row.clickable:hover { background: rgba(200,149,42,0.07); padding-left: 0.5rem; }
+  .song-row.clickable:hover .song-play { background: var(--gold); border-color: var(--gold); color: var(--dark); }
 
   .song-num { font-family: 'Special Elite', cursive; font-size: 0.75rem; color: var(--muted); width: 28px; flex-shrink: 0; }
 
@@ -280,7 +280,6 @@
     font-size: 0.7rem;
     transition: all 0.2s;
   }
-  .song-row:hover .song-play { background: var(--rust); color: var(--cream); }
 
   .song-info { flex: 1; }
   .song-title { font-family: 'Lora', serif; font-size: 1rem; color: var(--cream); font-weight: 400; }
@@ -294,34 +293,32 @@
     color: var(--gold);
     letter-spacing: 0.1em;
     border-radius: 2px;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
+  .song-tag.original { border-color: rgba(184,76,24,0.6); color: var(--rust); }
 
-  .song-dur { font-family: 'Special Elite', cursive; font-size: 0.75rem; color: var(--muted); width: 40px; text-align: right; }
+  .song-dur { font-family: 'Special Elite', cursive; font-size: 0.75rem; color: var(--muted); width: 50px; text-align: right; flex-shrink: 0; }
 
   .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
   .about-text p { color: var(--sand); line-height: 1.9; font-size: 1rem; margin-bottom: 1.25rem; }
   .about-text p em { color: var(--gold); }
-
   .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-
   .stat-box { border: 1px solid rgba(200,149,42,0.25); padding: 1.5rem; text-align: center; }
   .stat-num { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700; color: var(--gold); font-style: italic; }
   .stat-label { font-family: 'Special Elite', cursive; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-top: 0.35rem; }
 
   .contact-section { background: rgba(45,74,47,0.1); border-top: 1px solid rgba(200,149,42,0.2); }
-
   .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2rem; margin-top: 1rem; }
-
   .contact-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(200,149,42,0.2); padding: 1.75rem; transition: border-color 0.2s; }
   .contact-card:hover { border-color: rgba(200,149,42,0.5); }
-
   .contact-icon { font-size: 1.5rem; margin-bottom: 1rem; display: block; color: var(--gold); }
   .contact-type { font-family: 'Special Elite', cursive; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--rust); margin-bottom: 0.5rem; }
   .contact-value { font-family: 'Lora', serif; font-size: 0.95rem; color: var(--sand); line-height: 1.6; }
   .contact-value a { color: var(--sand); text-decoration: none; }
   .contact-value a:hover { color: var(--gold); }
 
-  .social-row { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(200,149,42,0.15); }
+  .social-row { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(200,149,42,0.15); align-items: center; }
 
   .social-btn {
     font-family: 'Special Elite', cursive;
@@ -361,8 +358,10 @@
   .tab-btn:hover { color: var(--sand); }
   .tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
 
-  .tab-content { display: none; }
-  .tab-content.active { display: block; }
+  .tab-content { display: none !important; overflow: hidden; height: 0; }
+  .tab-content.active { display: block !important; height: auto; }
+
+  .yt-hint { font-family: 'Special Elite', cursive; font-size: 0.68rem; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 1.5rem; text-transform: uppercase; }
 
   @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
   .fade-in   { animation: fadeUp 0.7s ease forwards; }
@@ -396,7 +395,7 @@
     <div class="hero-bg"></div>
     <div class="vinyl vinyl-1"></div>
     <div class="vinyl vinyl-2"></div>
-    <div class="hero-badge fade-in">Nepali Rock &amp; Folk · Est. 2018</div>
+    <div class="hero-badge fade-in">Nepali Rock &amp; Folk · Est. 2024</div>
     <h1 class="hero-title fade-in-2">Swabalamban<br><span>Boyz</span></h1>
     <p class="hero-sub fade-in-3">Nepali Boyz Vibing in Germany</p>
     <div class="hero-divider"></div>
@@ -409,19 +408,19 @@
   <section style="padding: 3rem 2rem; background: rgba(200,149,42,0.05); border-top: 1px solid rgba(200,149,42,0.15); border-bottom: 1px solid rgba(200,149,42,0.15);">
     <div class="container" style="display:flex; gap:2rem; flex-wrap:wrap; justify-content:space-around; text-align:center;">
       <div>
-        <div style="font-family:'Playfair Display',serif;font-size:2rem;color:var(--gold);font-style:italic;">5</div>
+        <div style="font-family:'Playfair Display',serif;font-size:2rem;color:var(--gold);font-style:italic;">7</div>
         <div style="font-family:'Special Elite',cursive;font-size:0.65rem;letter-spacing:0.2em;color:var(--muted);text-transform:uppercase;margin-top:4px;">Members</div>
       </div>
       <div>
-        <div style="font-family:'Playfair Display',serif;font-size:2rem;color:var(--gold);font-style:italic;">12</div>
-        <div style="font-family:'Special Elite',cursive;font-size:0.65rem;letter-spacing:0.2em;color:var(--muted);text-transform:uppercase;margin-top:4px;">Songs Released</div>
+        <div style="font-family:'Playfair Display',serif;font-size:2rem;color:var(--gold);font-style:italic;">1</div>
+        <div style="font-family:'Special Elite',cursive;font-size:0.65rem;letter-spacing:0.2em;color:var(--muted);text-transform:uppercase;margin-top:4px;">Original Song</div>
       </div>
       <div>
-        <div style="font-family:'Playfair Display',serif;font-size:2rem;color:var(--gold);font-style:italic;">6+</div>
-        <div style="font-family:'Special Elite',cursive;font-size:0.65rem;letter-spacing:0.2em;color:var(--muted);text-transform:uppercase;margin-top:4px;">Years Together</div>
+        <div style="font-family:'Playfair Display',serif;font-size:2rem;color:var(--gold);font-style:italic;">2024</div>
+        <div style="font-family:'Special Elite',cursive;font-size:0.65rem;letter-spacing:0.2em;color:var(--muted);text-transform:uppercase;margin-top:4px;">Est. in Stuttgart</div>
       </div>
       <div>
-        <div style="font-family:'Playfair Display',serif;font-size:2rem;color:var(--gold);font-style:italic;">50+</div>
+        <div style="font-family:'Playfair Display',serif;font-size:2rem;color:var(--gold);font-style:italic;">5</div>
         <div style="font-family:'Special Elite',cursive;font-size:0.65rem;letter-spacing:0.2em;color:var(--muted);text-transform:uppercase;margin-top:4px;">Live Shows</div>
       </div>
     </div>
@@ -436,44 +435,48 @@
       <h2 class="section-title">Meet the <em>Band</em></h2>
       <div class="section-line"></div>
       <div class="members-grid">
-        <div class="member-card">
-          <div class="member-avatar">AD</div>
-          <div class="member-name">Ashok Dahal</div>
-          <div class="member-role">Lead Vocals &amp; Rhythm Guitar</div>
-          <div class="member-bio">The voice of the mountains. Ashok's soulful folk melodies blend seamlessly with raw rock energy, drawing from his roots in Pokhara.</div>
-        </div>
-        <div class="member-card">
+<div class="member-card">
           <div class="member-avatar">HB</div>
           <div class="member-name">Hesmar BK</div>
           <div class="member-role">Lead Guitar</div>
           <div class="member-bio">A self-taught guitar wizard. Hesmar's riffs walk the line between classic rock and traditional Nepali scales with effortless grace.</div>
         </div>
-        <div class="member-card">
+<div class="member-card">
           <div class="member-avatar">JB</div>
           <div class="member-name">J.P. Bohara</div>
           <div class="member-role">Manager &amp; Side Vocalist</div>
-          <div class="member-bio">J.P. holds the groove with fierce precision. His melodic voice give every song its heartbeat and its soul.</div>
+          <div class="member-bio">J.P. holds the band together with fierce precision. His melodic voice gives every song its heartbeat and its soul.</div>
         </div>
-        <div class="member-card">
+<div class="member-card">
           <div class="member-avatar">UB</div>
           <div class="member-name">Umesh BK</div>
           <div class="member-role">Drums &amp; Percussion</div>
-          <div class="member-bio">Trained in both Western drums and traditional madal, Dev weaves rhythm stories that span continents and generations.</div>
+          <div class="member-bio">Trained in both Western drums and traditional madal, Umesh weaves rhythm stories that span continents and generations.</div>
         </div>
-        <div class="member-card">
+<div class="member-card">
           <div class="member-avatar">AT</div>
           <div class="member-name">Ashok Tamang</div>
           <div class="member-role">Rhythm Guitar</div>
-          <div class="member-bio">Ashok's guitar carries the spirit of the Himalayas into every song. His rhythm add texture that transforms rock into something otherworldly.</div>
-          </div>
-        <div class="member-card">
+          <div class="member-bio">Ashok's guitar carries the spirit of the Himalayas into every song. His rhythm adds texture that transforms rock into something otherworldly.</div>
+        </div>
+<div class="member-card">
           <div class="member-avatar">ST</div>
           <div class="member-name">Subash Timalsina</div>
           <div class="member-role">Lead Vocalist</div>
           <div class="member-bio">Subash's voice touches the heart of every listener.</div>
-          
         </div>
-      </div>
+<div class="member-card">
+          <div class="member-avatar">AD</div>
+          <div class="member-name">Ashok Dahal</div>
+          <div class="member-role">Lead Vocals &amp; Rhythm Guitar</div>
+          <div class="member-bio">The voice of the mountains. Ashok's soulful folk melodies blend seamlessly with raw rock energy, drawing from his roots in Pokhara.</div>
+        </div>
+<div class="member-card">
+          <div class="member-avatar">MO</div>
+          <div class="member-name">Milan Oli</div>
+          <div class="member-role">Technical Manager</div>
+          <div class="member-bio">Milan keeps everything running behind the scenes — from sound setup to stage coordination, nothing happens without him.</div>
+        </div></div>
     </div>
   </section>
 </div>
@@ -488,78 +491,89 @@
 
       <div class="tab-nav">
         <button class="tab-btn active" onclick="showTab(event,'all')">All Songs</button>
-        <button class="tab-btn" onclick="showTab(event,'rock')">Rock</button>
-        <button class="tab-btn" onclick="showTab(event,'folk')">Folk</button>
+        <button class="tab-btn" onclick="showTab(event,'original')">Original</button>
+        <button class="tab-btn" onclick="showTab(event,'covers')">Covers</button>
         <button class="tab-btn" onclick="showTab(event,'albums')">Albums</button>
       </div>
 
+      <!-- ALL SONGS -->
       <div id="tab-all" class="tab-content active">
+        <p class="yt-hint">&#9654; Click Maya K Ho to watch on YouTube</p>
         <div class="songs-list">
-          <div class="song-row"><span class="song-num">01</span><div class="song-play">&#9654;</div><div class="song-info"><div class="song-title">Maya K Ho</div><div class="song-meta">Swabalamban Boyz · 2024</div></div><span class="song-tag">Folk</span><span class="song-dur">4:12</span></div>
-          <div class="song-row"><span class="song-num">02</span><div class="song-play">&#9654;</div><div class="song-info"><div class="song-title">Bato Dekhi Aayeko</div><div class="song-meta">Swabalamban Boyz · 2024</div></div><span class="song-tag">Rock</span><span class="song-dur">3:48</span></div>
-          <div class="song-row"><span class="song-num">03</span><div class="song-play">&#9654;</div><div class="song-info"><div class="song-title">Mero Nepal</div><div class="song-meta">Swabalamban Boyz · 2023</div></div><span class="song-tag">Folk</span><span class="song-dur">5:01</span></div>
-          <div class="song-row"><span class="song-num">04</span><div class="song-play">&#9654;</div><div class="song-info"><div class="song-title">Kholako Gaun</div><div class="song-meta">Swabalamban Boyz · 2023</div></div><span class="song-tag">Rock</span><span class="song-dur">4:33</span></div>
-          <div class="song-row"><span class="song-num">05</span><div class="song-play">&#9654;</div><div class="song-info"><div class="song-title">Aakash Bhanda Maathi</div><div class="song-meta">Swabalamban Boyz · 2022</div></div><span class="song-tag">Folk</span><span class="song-dur">3:57</span></div>
-          <div class="song-row"><span class="song-num">06</span><div class="song-play">&#9654;</div><div class="song-info"><div class="song-title">Jungle Ko Aago</div><div class="song-meta">Swabalamban Boyz · 2022</div></div><span class="song-tag">Rock</span><span class="song-dur">4:19</span></div>
-          <div class="song-row"><span class="song-num">07</span><div class="song-play">&#9654;</div><div class="song-info"><div class="song-title">Timi Bina</div><div class="song-meta">Swabalamban Boyz · 2021</div></div><span class="song-tag">Folk</span><span class="song-dur">4:44</span></div>
-          <div class="song-row"><span class="song-num">08</span><div class="song-play">&#9654;</div><div class="song-info"><div class="song-title">Dhungero Satta</div><div class="song-meta">Swabalamban Boyz · 2021</div></div><span class="song-tag">Rock</span><span class="song-dur">3:38</span></div>
-          <div class="song-row"><span class="song-num">09</span><div class="song-play">&#9654;</div><div class="song-info"><div class="song-title">Sangai Hami</div><div class="song-meta">Swabalamban Boyz · 2020</div></div><span class="song-tag">Folk</span><span class="song-dur">5:12</span></div>
-          <div class="song-row"><span class="song-num">10</span><div class="song-play">&#9654;</div><div class="song-info"><div class="song-title">Naulo Bihani</div><div class="song-meta">Swabalamban Boyz · 2019</div></div><span class="song-tag">Rock</span><span class="song-dur">4:02</span></div>
-          <div class="song-row"><span class="song-num">11</span><div class="song-play">&#9654;</div><div class="song-info"><div class="song-title">Himali Raat</div><div class="song-meta">Swabalamban Boyz · 2019</div></div><span class="song-tag">Folk</span><span class="song-dur">4:55</span></div>
-          <div class="song-row"><span class="song-num">12</span><div class="song-play">&#9654;</div><div class="song-info"><div class="song-title">Swabalam (Debut Single)</div><div class="song-meta">Swabalamban Boyz · 2018</div></div><span class="song-tag">Rock</span><span class="song-dur">3:30</span></div>
+          <a class="song-row clickable" href="https://www.youtube.com/watch?v=0b08TBQUdS0" target="_blank" rel="noopener" style="text-decoration:none;">
+            <span class="song-num">01</span>
+            <div class="song-play">&#9654;</div>
+            <div class="song-info">
+              <div class="song-title">Maya K Ho</div>
+              <div class="song-meta">Swabalamban Boyz · 2024 · Original</div>
+            </div>
+            <span class="song-tag original">Original</span>
+            <span class="song-dur" style="color:var(--rust);">&#9654; YT</span>
+          </a>
+          <div class="song-row">
+            <span class="song-num">02</span><div class="song-play">&#9654;</div>
+            <div class="song-info"><div class="song-title">Bato Dekhi Aayeko</div><div class="song-meta">Cover</div></div>
+            <span class="song-tag">Cover</span><span class="song-dur">—</span>
+          </div>
+          <div class="song-row">
+            <span class="song-num">03</span><div class="song-play">&#9654;</div>
+            <div class="song-info"><div class="song-title">Mero Nepal</div><div class="song-meta">Cover</div></div>
+            <span class="song-tag">Cover</span><span class="song-dur">—</span>
+          </div>
+          <div class="song-row">
+            <span class="song-num">04</span><div class="song-play">&#9654;</div>
+            <div class="song-info"><div class="song-title">Aakash Bhanda Maathi</div><div class="song-meta">Cover</div></div>
+            <span class="song-tag">Cover</span><span class="song-dur">—</span>
+          </div>
+          <div class="song-row">
+            <span class="song-num">05</span><div class="song-play">&#9654;</div>
+            <div class="song-info"><div class="song-title">Timi Bina</div><div class="song-meta">Cover</div></div>
+            <span class="song-tag">Cover</span><span class="song-dur">—</span>
+          </div>
         </div>
       </div>
 
-      <div id="tab-rock" class="tab-content">
+      <!-- ORIGINAL -->
+      <div id="tab-original" class="tab-content">
+        <p class="yt-hint">&#9654; Click to watch on YouTube</p>
         <div class="songs-list">
-          <div class="song-row"><span class="song-num">01</span><div class="song-play">&#9654;</div><div class="song-info"><div class="song-title">Bato Dekhi Aayeko</div><div class="song-meta">2024</div></div><span class="song-tag">Rock</span><span class="song-dur">3:48</span></div>
-          <div class="song-row"><span class="song-num">02</span><div class="song-play">&#9654;</div><div class="song-info"><div class="song-title">Kholako Gaun</div><div class="song-meta">2023</div></div><span class="song-tag">Rock</span><span class="song-dur">4:33</span></div>
-          <div class="song-row"><span class="song-num">03</span><div class="song-play">&#9654;</div><div class="song-info"><div class="song-title">Jungle Ko Aago</div><div class="song-meta">2022</div></div><span class="song-tag">Rock</span><span class="song-dur">4:19</span></div>
-          <div class="song-row"><span class="song-num">04</span><div class="song-play">&#9654;</div><div class="song-info"><div class="song-title">Dhungero Satta</div><div class="song-meta">2021</div></div><span class="song-tag">Rock</span><span class="song-dur">3:38</span></div>
-          <div class="song-row"><span class="song-num">05</span><div class="song-play">&#9654;</div><div class="song-info"><div class="song-title">Naulo Bihani</div><div class="song-meta">2019</div></div><span class="song-tag">Rock</span><span class="song-dur">4:02</span></div>
-          <div class="song-row"><span class="song-num">06</span><div class="song-play">&#9654;</div><div class="song-info"><div class="song-title">Swabalam (Debut Single)</div><div class="song-meta">2018</div></div><span class="song-tag">Rock</span><span class="song-dur">3:30</span></div>
+          <a class="song-row clickable" href="https://www.youtube.com/watch?v=0b08TBQUdS0" target="_blank" rel="noopener" style="text-decoration:none;">
+            <span class="song-num">01</span>
+            <div class="song-play">&#9654;</div>
+            <div class="song-info">
+              <div class="song-title">Maya K Ho</div>
+              <div class="song-meta">Swabalamban Boyz · 2024</div>
+            </div>
+            <span class="song-tag original">Original</span>
+            <span class="song-dur" style="color:var(--rust);">&#9654; YT</span>
+          </a>
         </div>
       </div>
 
-      <div id="tab-folk" class="tab-content">
+      <!-- COVERS -->
+      <div id="tab-covers" class="tab-content">
         <div class="songs-list">
-          <div class="song-row"><span class="song-num">01</span><div class="song-play">&#9654;</div><div class="song-info"><div class="song-title">Pahad ko Chautari</div><div class="song-meta">2024</div></div><span class="song-tag">Folk</span><span class="song-dur">4:12</span></div>
-          <div class="song-row"><span class="song-num">02</span><div class="song-play">&#9654;</div><div class="song-info"><div class="song-title">Mero Nepal</div><div class="song-meta">2023</div></div><span class="song-tag">Folk</span><span class="song-dur">5:01</span></div>
-          <div class="song-row"><span class="song-num">03</span><div class="song-play">&#9654;</div><div class="song-info"><div class="song-title">Aakash Bhanda Maathi</div><div class="song-meta">2022</div></div><span class="song-tag">Folk</span><span class="song-dur">3:57</span></div>
-          <div class="song-row"><span class="song-num">04</span><div class="song-play">&#9654;</div><div class="song-info"><div class="song-title">Timi Bina</div><div class="song-meta">2021</div></div><span class="song-tag">Folk</span><span class="song-dur">4:44</span></div>
-          <div class="song-row"><span class="song-num">05</span><div class="song-play">&#9654;</div><div class="song-info"><div class="song-title">Sangai Hami</div><div class="song-meta">2020</div></div><span class="song-tag">Folk</span><span class="song-dur">5:12</span></div>
-          <div class="song-row"><span class="song-num">06</span><div class="song-play">&#9654;</div><div class="song-info"><div class="song-title">Himali Raat</div><div class="song-meta">2019</div></div><span class="song-tag">Folk</span><span class="song-dur">4:55</span></div>
+          <div class="song-row"><span class="song-num">01</span><div class="song-play">&#9654;</div><div class="song-info"><div class="song-title">Bato Dekhi Aayeko</div><div class="song-meta">Cover</div></div><span class="song-tag">Cover</span><span class="song-dur">—</span></div>
+          <div class="song-row"><span class="song-num">02</span><div class="song-play">&#9654;</div><div class="song-info"><div class="song-title">Mero Nepal</div><div class="song-meta">Cover</div></div><span class="song-tag">Cover</span><span class="song-dur">—</span></div>
+          <div class="song-row"><span class="song-num">03</span><div class="song-play">&#9654;</div><div class="song-info"><div class="song-title">Aakash Bhanda Maathi</div><div class="song-meta">Cover</div></div><span class="song-tag">Cover</span><span class="song-dur">—</span></div>
+          <div class="song-row"><span class="song-num">04</span><div class="song-play">&#9654;</div><div class="song-info"><div class="song-title">Timi Bina</div><div class="song-meta">Cover</div></div><span class="song-tag">Cover</span><span class="song-dur">—</span></div>
         </div>
       </div>
 
+      <!-- ALBUMS -->
       <div id="tab-albums" class="tab-content">
-        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; margin-top:1rem;">
-          <div class="member-card" style="text-align:left;">
+        <div style="max-width:280px;">
+          <a class="member-card" href="https://www.youtube.com/watch?v=0b08TBQUdS0" target="_blank" rel="noopener" style="text-align:left;cursor:pointer;text-decoration:none;display:block;">
             <div style="width:100%;height:160px;background:linear-gradient(135deg,var(--rust),var(--dark));border:1px solid rgba(200,149,42,0.3);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;">
-              <span style="font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--gold);font-style:italic;">Pahad</span>
+              <span style="font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--gold);font-style:italic;">Maya K Ho</span>
             </div>
-            <div class="member-name" style="font-size:1rem;">Pahad</div>
-            <div class="member-role">2024 · 4 tracks</div>
-            <div class="member-bio">Latest EP blending Himalayan folk textures with heavy guitar walls.</div>
-          </div>
-          <div class="member-card" style="text-align:left;">
-            <div style="width:100%;height:160px;background:linear-gradient(135deg,var(--green),var(--dark));border:1px solid rgba(200,149,42,0.3);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;">
-              <span style="font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--gold);font-style:italic;">Aago</span>
-            </div>
-            <div class="member-name" style="font-size:1rem;">Aago</div>
-            <div class="member-role">2022 · 5 tracks</div>
-            <div class="member-bio">Raw and electric — the album that put SB on Nepal's live circuit map.</div>
-          </div>
-          <div class="member-card" style="text-align:left;">
-            <div style="width:100%;height:160px;background:linear-gradient(135deg,#3A2A10,var(--dark));border:1px solid rgba(200,149,42,0.3);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;">
-              <span style="font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--gold);font-style:italic;">Naulo</span>
-            </div>
-            <div class="member-name" style="font-size:1rem;">Naulo Bihani</div>
-            <div class="member-role">2019 · 3 tracks</div>
-            <div class="member-bio">The debut — rough, honest, and full of the fire that started it all.</div>
-          </div>
+            <div class="member-name" style="font-size:1rem;">Maya K Ho</div>
+            <div class="member-role">2024 · 1 original track</div>
+            <div class="member-bio">Our debut original — a heartfelt Nepali rock track born in Stuttgart. Click to watch on YouTube.</div>
+          </a>
         </div>
       </div>
+
     </div>
   </section>
 </div>
@@ -573,16 +587,16 @@
       <div class="section-line"></div>
       <div class="about-grid">
         <div class="about-text">
-          <p>Swabalamban Boyz was born in <em>2024</em> from a small rehearsal room in Kathmandu, with nothing but a secondhand amplifier, a madal drum, and a shared obsession with making something true.</p>
+          <p>Swabalamban Boyz was born in <em>2024</em> in <em>Stuttgart, Germany</em> — a group of Nepali friends far from home, united by a shared love of music and a fierce determination to keep their culture alive.</p>
           <p>We play <em>Nepali rock and folk music</em> — not as opposites, but as one language. Our songs carry the weight of the hills, the warmth of village fires, and the electricity of a crowd that knows every word.</p>
-          <p>Six years later, we've played over <em>50 live shows</em>, released 3 EPs, and built a community of listeners who believe music can be both deeply rooted and boldly alive.</p>
+          <p>We started with covers of the songs we grew up loving, and in 2024 released our <em>first original song, Maya K Ho</em>. Five live shows in, we are just getting started.</p>
           <p style="font-style:italic; color:var(--gold);">"Swabalamban" means self-reliance. That's how we built this — independently, honestly, and with everything we have.</p>
         </div>
         <div class="about-stats">
-          <div class="stat-box"><div class="stat-num">2018</div><div class="stat-label">Founded</div></div>
-          <div class="stat-box"><div class="stat-num">12</div><div class="stat-label">Songs Released</div></div>
-          <div class="stat-box"><div class="stat-num">50+</div><div class="stat-label">Live Shows</div></div>
-          <div class="stat-box"><div class="stat-num">3</div><div class="stat-label">EPs Published</div></div>
+          <div class="stat-box"><div class="stat-num">2024</div><div class="stat-label">Founded</div></div>
+          <div class="stat-box"><div class="stat-num">7</div><div class="stat-label">Members</div></div>
+          <div class="stat-box"><div class="stat-num">5</div><div class="stat-label">Live Shows</div></div>
+          <div class="stat-box"><div class="stat-num">1</div><div class="stat-label">Original Song</div></div>
         </div>
       </div>
     </div>
@@ -596,45 +610,51 @@
       <div class="section-label">Get in Touch</div>
       <h2 class="section-title">Contact <em>Us</em></h2>
       <div class="section-line"></div>
-      <div class="contact-grid">
-        <div class="contact-card">
-          <span class="contact-icon">&#9993;</span>
-          <div class="contact-type">Email</div>
-          <div class="contact-value">
-            <a href="mailto:band@swabalambanboyz.com">band@swabalambanboyz.com</a><br>
-            <a href="mailto:booking@swabalambanboyz.com" style="margin-top:4px;display:block;">booking@swabalambanboyz.com</a>
+            <div style="display:flex; flex-direction:column; gap:0; border-top:1px solid rgba(200,149,42,0.2);">
+
+        <div style="display:flex; align-items:flex-start; gap:2rem; padding:1.5rem 0; border-bottom:1px solid rgba(200,149,42,0.1);">
+          <div style="font-family:'Special Elite',cursive;font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--rust);width:120px;flex-shrink:0;padding-top:2px;">Email</div>
+          <div style="font-family:'Lora',serif;font-size:0.95rem;color:var(--sand);">
+            <a href="mailto:Swabalambanboyz.shn@gmail.com" style="color:var(--sand);text-decoration:none;word-break:break-all;">Swabalambanboyz.shn@gmail.com</a>
           </div>
         </div>
-        <div class="contact-card">
-          <span class="contact-icon">&#9742;</span>
-          <div class="contact-type">Phone</div>
-          <div class="contact-value">+977 98-XXXXXXXX<br><span style="font-size:0.8rem;color:var(--muted);">Mon–Sat, 10am–6pm NPT</span></div>
+
+        <div style="display:flex; align-items:flex-start; gap:2rem; padding:1.5rem 0; border-bottom:1px solid rgba(200,149,42,0.1);">
+          <div style="font-family:'Special Elite',cursive;font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--rust);width:120px;flex-shrink:0;padding-top:2px;">Phone</div>
+          <div style="font-family:'Lora',serif;font-size:0.95rem;color:var(--sand);">
+            0 1575 4095381<br><span style="font-size:0.8rem;color:var(--muted);">Mon–Sat, 10am–6pm CET</span>
+          </div>
         </div>
-        <div class="contact-card">
-          <span class="contact-icon">&#9679;</span>
-          <div class="contact-type">Based In</div>
-          <div class="contact-value">Kathmandu, Nepal<br><span style="font-size:0.8rem;color:var(--muted);">Available for shows nationwide</span></div>
+
+        <div style="display:flex; align-items:flex-start; gap:2rem; padding:1.5rem 0; border-bottom:1px solid rgba(200,149,42,0.1);">
+          <div style="font-family:'Special Elite',cursive;font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--rust);width:120px;flex-shrink:0;padding-top:2px;">Based In</div>
+          <div style="font-family:'Lora',serif;font-size:0.95rem;color:var(--sand);">
+            Stuttgart, Germany<br><span style="font-size:0.8rem;color:var(--muted);">Available for shows across Germany</span>
+          </div>
         </div>
-        <div class="contact-card">
-          <span class="contact-icon">&#9836;</span>
-          <div class="contact-type">Booking &amp; Press</div>
-          <div class="contact-value">For live shows, interviews, and media inquiries, reach our manager at<br><a href="mailto:manager@swabalambanboyz.com">manager@swabalambanboyz.com</a></div>
+
+        <div style="display:flex; align-items:flex-start; gap:2rem; padding:1.5rem 0; border-bottom:1px solid rgba(200,149,42,0.1);">
+          <div style="font-family:'Special Elite',cursive;font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--rust);width:120px;flex-shrink:0;padding-top:2px;">Booking &amp; Press</div>
+          <div style="font-family:'Lora',serif;font-size:0.95rem;color:var(--sand);">
+            For live shows, interviews, and media inquiries:<br>
+            <a href="mailto:Swabalambanboyz.shn@gmail.com" style="color:var(--sand);text-decoration:none;word-break:break-all;">Swabalambanboyz.shn@gmail.com</a>
+          </div>
         </div>
+
       </div>
       <div class="social-row">
-        <span style="font-family:'Special Elite',cursive;font-size:0.7rem;letter-spacing:0.2em;color:var(--muted);text-transform:uppercase;align-self:center;">Follow us ·</span>
-        <a class="social-btn" href="https://facebook.com" target="_blank">Facebook</a>
-        <a class="social-btn" href="https://instagram.com" target="_blank">Instagram</a>
-        <a class="social-btn" href="https://youtube.com" target="_blank">YouTube</a>
-        <a class="social-btn" href="https://spotify.com" target="_blank">Spotify</a>
-        <a class="social-btn" href="https://soundcloud.com" target="_blank">SoundCloud</a>
+        <span style="font-family:'Special Elite',cursive;font-size:0.7rem;letter-spacing:0.2em;color:var(--muted);text-transform:uppercase;">Follow us ·</span>
+        <a class="social-btn" href="https://www.facebook.com/share/1EVsXBLgBh/" target="_blank">Facebook</a>
+        <a class="social-btn" href="https://www.instagram.com/swabalambanboyzband?igsh=MWV0cWNldTVjcWJraQ==" target="_blank">Instagram</a>
+        <a class="social-btn" href="https://www.youtube.com/@SwabalambanBoyz" target="_blank">YouTube</a>
+        <a class="social-btn" href="https://www.tiktok.com/@swabalambanboyzband?_r=1&amp;_t=ZG-95fAw8hHmRk" target="_blank">TikTok</a>
       </div>
     </div>
   </section>
 </div>
 
 <footer>
-  <p>&copy; 2025 Swabalamban Boyz &middot; All Rights Reserved &middot; Kathmandu, Nepal</p>
+  <p>&copy; 2025 Swabalamban Boyz &middot; All Rights Reserved &middot; Stuttgart, Germany</p>
 </footer>
 
 <script>
@@ -649,6 +669,21 @@
     document.querySelectorAll('.tab-content').forEach(function(t) { t.classList.remove('active'); });
     event.target.classList.add('active');
     document.getElementById('tab-' + name).classList.add('active');
+  }
+
+
+  function openYT_OLD(videoId) {
+    document.getElementById('ytFrame').src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1';
+    document.getElementById('ytOverlay').classList.add('open');
+  }
+
+  function closeYT() {
+    document.getElementById('ytFrame').src = '';
+    document.getElementById('ytOverlay').classList.remove('open');
+  }
+
+  function closeYTOutside(event) {
+    if (event.target === document.getElementById('ytOverlay')) { closeYT(); }
   }
 </script>
 </body>
